@@ -1,0 +1,27 @@
+﻿<Window x:Class="Drive4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Name="rdMenu"
+                           Height="30" />
+            <RowDefinition Name="rdToolbar"
+                           Height="40" />
+            <RowDefinition Name="rdWorkSpace" />
+            <RowDefinition Name="rdStatusBar"
+                           Height="35" />
+        </Grid.RowDefinitions>
+        <Menu Name="mMainMenu"
+              Grid.Row="0"
+              IsMainMenu="True"
+              Height="30"
+              Padding="5,0,5,0">
+            <MenuItem Header="_Справочники">
+                <MenuItem Name="miUnits" Header="Единицы измерения"
+                          Click="miUnits_Click">
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+    </Grid>
+</Window>
