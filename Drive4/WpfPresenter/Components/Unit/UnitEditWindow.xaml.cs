@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Drive4.Toolkit.Interfaces;
+using System.Data.Objects.DataClasses;
 
 namespace Drive4.WpfPresenter.Components.Unit
 {
@@ -23,7 +24,7 @@ namespace Drive4.WpfPresenter.Components.Unit
         {
             InitializeComponent();
         }
-        public UnitEditWindow(DataManager manager, Drive4.Toolkit.DAO.Unit item)
+        public UnitEditWindow(DataManager manager, EntityObject item)
         {
             InitializeComponent();
         }

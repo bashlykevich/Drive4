@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Drive4.Toolkit.Interfaces;
+using System.Data.Objects.DataClasses;
 
 namespace Drive4.Toolkit.UserControls.DataGrid
 {
@@ -42,14 +43,14 @@ namespace Drive4.Toolkit.UserControls.DataGrid
         }
         void Edit()
         {            
-            Window EditWindow = (Window)Activator.CreateInstance(EditWindowClass, manager, dgItems.SelectedItem as DataItem);
+            Window EditWindow = (Window)Activator.CreateInstance(EditWindowClass, manager, dgItems.SelectedItem as EntityObject);
             EditWindow.Show();
         }
         void Delete()
         {
-            foreach (DataItem item in dgItems.SelectedItems)
+            foreach (EntityObject item in dgItems.SelectedItems)
             {
-                manager.Delete(item.ID);
+                manager.Delete((int)item.EntityKey.EntityKeyValues[0].Value);
             }
         }
         private void btnCreate_Click(object sender, RoutedEventArgs e)

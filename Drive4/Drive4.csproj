@@ -67,26 +67,7 @@
     </Compile>
     <Compile Include="MsSqlAdo\Components\UnitDataManager.cs" />
     <Compile Include="MsSqlAdo\MsSqlAdoConnector.cs" />
-    <Compile Include="MsSqlSimple\Components\UnitDataManager.cs" />
-    <Compile Include="MsSqlSimple\MsSqlDataConnector.cs" />
-    <Compile Include="Toolkit\DAO\Account.cs" />
-    <Compile Include="Toolkit\DAO\AdminUnit.cs" />
-    <Compile Include="Toolkit\DAO\Bank.cs" />
-    <Compile Include="Toolkit\DAO\BankAccount.cs" />
-    <Compile Include="Toolkit\DAO\Basket.cs" />
-    <Compile Include="Toolkit\DAO\Brand.cs" />
-    <Compile Include="Toolkit\DAO\CurrencyRate.cs" />
-    <Compile Include="Toolkit\DAO\Invoice.cs" />
-    <Compile Include="Toolkit\DAO\Overpricing.cs" />
-    <Compile Include="Toolkit\DAO\Spare.cs" />
-    <Compile Include="Toolkit\DAO\SpareGroup.cs" />
-    <Compile Include="Toolkit\DAO\SpareIncome.cs" />
-    <Compile Include="Toolkit\DAO\SpareOutgo.cs" />
-    <Compile Include="Toolkit\DAO\Unit.cs" />
-    <Compile Include="Toolkit\DAO\VatRate.cs" />
-    <Compile Include="Toolkit\DAO\Warehouse.cs" />
     <Compile Include="Toolkit\Interfaces\DataConnector.cs" />
-    <Compile Include="Toolkit\Interfaces\DataItem.cs" />
     <Compile Include="Toolkit\Interfaces\DataManager.cs" />
     <Compile Include="Toolkit\UserControls\DataGrid\DataGridPro.xaml.cs">
       <DependentUpon>DataGridPro.xaml</DependentUpon>
