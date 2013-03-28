@@ -4,18 +4,38 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              Loaded="UserControl_Loaded"
-             VerticalAlignment="Stretch"
+             VerticalAlignment="Stretch"             
              HorizontalAlignment="Stretch"
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="35" />
+            <RowDefinition Height="40" />
+           <RowDefinition Height="*" />
+            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20" />
-        </Grid.ColumnDefinitions>    
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" 
+                    Margin="5"
+                    Orientation="Horizontal">
+            <Button Name="btnCreate"
+                    Width="70"
+                    Margin="2"
+                    Content="Create"
+                    Click="btnCreate_Click"/>
+            <Button Name="btnEdit"
+                    Width="70"
+                    Margin="2"
+                    Content="Edit"
+                    Click="btnEdit_Click"/>
+            <Button Name="btnDelete"
+                    Width="70"
+                    Margin="2"
+                    Content="Delete"
+                    Click="btnDelete_Click"/>
+        </StackPanel>
         <DataGrid
             ItemsSource="{Binding ItemsSource, ElementName=pageControl}" 
             Name="dgItems"            
@@ -28,7 +48,7 @@
             SelectionMode="Single"
             SelectionUnit="FullRow"            
             Grid.Column="0"
-            Grid.Row="0">
+            Grid.Row="1">
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Name="dgItemsCreate" Header="Создать" />
@@ -42,18 +62,6 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
         </DataGrid>   
-        <StackPanel Grid.Row="1" 
-                    Margin="5"
-                    Orientation="Horizontal">
-            <Button Name="btnCreate"
-                    Content="Create"
-                    Click="btnCreate_Click"/>
-            <Button Name="btnEdit"
-                    Content="Edit"
-                    Click="btnEdit_Click"/>
-            <Button Name="btnDelete"
-                    Content="Delete"
-                    Click="btnDelete_Click"/>
-        </StackPanel>
+        
     </Grid>
 </UserControl>

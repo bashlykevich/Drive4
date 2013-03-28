@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Drive4.Toolkit.Interfaces;
 using System.Data.Objects.DataClasses;
+using Drive4.Toolkit.UserControls.EditWindow;
 
 namespace Drive4.Toolkit.UserControls.DataGrid
 {
@@ -38,12 +39,12 @@ namespace Drive4.Toolkit.UserControls.DataGrid
         }
         void Create()
         {
-            Window EditWindow = (Window)Activator.CreateInstance(EditWindowClass, manager);
+            Window EditWindow = new EditWindowPro(manager, EditWindowClass);            
             EditWindow.Show();
         }
         void Edit()
-        {            
-            Window EditWindow = (Window)Activator.CreateInstance(EditWindowClass, manager, dgItems.SelectedItem as EntityObject);
+        {
+            Window EditWindow = new EditWindowPro(manager, EditWindowClass, dgItems.SelectedItem as EntityObject);            
             EditWindow.Show();
         }
         void Delete()

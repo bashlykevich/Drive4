@@ -72,6 +72,9 @@
     <Compile Include="Toolkit\UserControls\DataGrid\DataGridPro.xaml.cs">
       <DependentUpon>DataGridPro.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Toolkit\UserControls\EditWindow\EditWindowPro.xaml.cs">
+      <DependentUpon>EditWindowPro.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WpfPresenter\Components\Unit\UnitEditWindow.xaml.cs">
       <DependentUpon>UnitEditWindow.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Toolkit\UserControls\DataGrid\DataGridPro.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Toolkit\UserControls\EditWindow\EditWindowPro.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

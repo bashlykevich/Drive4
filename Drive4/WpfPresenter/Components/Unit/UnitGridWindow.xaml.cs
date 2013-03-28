@@ -20,7 +20,7 @@ namespace Drive4.WpfPresenter.Components.Unit
     /// </summary>
     public partial class UnitGridWindow : Window
     {
-        DataGridPro dg;        
+        DataGridPro dg;
 
         public UnitGridWindow()
         {
