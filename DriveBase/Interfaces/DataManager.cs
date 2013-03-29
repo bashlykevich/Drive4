@@ -9,6 +9,10 @@ namespace Drive4.Toolkit.Interfaces
 {
     public interface DataManager
     {
+        Type EntityType
+        {
+            get;
+        }
         string Name
         {
             get;
