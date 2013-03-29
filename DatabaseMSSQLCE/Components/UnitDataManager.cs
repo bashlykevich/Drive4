@@ -11,8 +11,7 @@ using DriveBase.Tools;
 namespace Drive4.MsSqlCe.Components
 {
     class UnitDataManager : DataManager
-    {
-        Type type = typeof(Unit);
+    {        
         string name = "Единицы измерения";
         DriveEntities db;
         int NextID
@@ -83,11 +82,6 @@ namespace Drive4.MsSqlCe.Components
         public string Name
         {
             get { return name; }
-        }
-
-        public Type EntityType
-        {
-            get { return type; }
         }
     }
 }

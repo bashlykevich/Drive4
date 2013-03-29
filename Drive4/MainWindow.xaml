@@ -23,6 +23,9 @@
                 <MenuItem Name="miUnits" Header="Единицы измерения"
                           Click="miUnits_Click">
                 </MenuItem>
+                <MenuItem Name="miBrands" Header="Бренды"
+                          Click="miBrands_Click">
+                </MenuItem>
             </MenuItem>
         </Menu>
     </Grid>

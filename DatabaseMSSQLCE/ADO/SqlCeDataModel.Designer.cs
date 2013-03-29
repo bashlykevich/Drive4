@@ -116,22 +116,6 @@ namespace DatabaseMSSQLCE.ADO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Brand> Brands
-        {
-            get
-            {
-                if ((_Brands == null))
-                {
-                    _Brands = base.CreateObjectSet<Brand>("Brands");
-                }
-                return _Brands;
-            }
-        }
-        private ObjectSet<Brand> _Brands;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<CurrencyRate> CurrencyRates
         {
             get
@@ -352,6 +336,22 @@ namespace DatabaseMSSQLCE.ADO
             }
         }
         private ObjectSet<Unit> _Units;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Brand> Brands
+        {
+            get
+            {
+                if ((_Brands == null))
+                {
+                    _Brands = base.CreateObjectSet<Brand>("Brands");
+                }
+                return _Brands;
+            }
+        }
+        private ObjectSet<Brand> _Brands;
 
         #endregion
 
@@ -379,14 +379,6 @@ namespace DatabaseMSSQLCE.ADO
         public void AddToBankAccounts(BankAccount bankAccount)
         {
             base.AddObject("BankAccounts", bankAccount);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Brands EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToBrands(Brand brand)
-        {
-            base.AddObject("Brands", brand);
         }
     
         /// <summary>
@@ -499,6 +491,14 @@ namespace DatabaseMSSQLCE.ADO
         public void AddToUnits(Unit unit)
         {
             base.AddObject("Units", unit);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Brands EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBrands(Brand brand)
+        {
+            base.AddObject("Brands", brand);
         }
 
         #endregion
@@ -1212,33 +1212,6 @@ namespace DatabaseMSSQLCE.ADO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 ID
-        {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                if (_ID != value)
-                {
-                    OnIDChanging(value);
-                    ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ID");
-                    OnIDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
-        partial void OnIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public Nullable<global::System.DateTime> ModifiedOn
@@ -1331,6 +1304,33 @@ namespace DatabaseMSSQLCE.ADO
         private global::System.String _Code1C;
         partial void OnCode1CChanging(global::System.String value);
         partial void OnCode1CChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
 
         #endregion
 

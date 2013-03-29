@@ -11,11 +11,16 @@ namespace DatabaseMSSQLCE
     public class MsSqlCeAdoConnector: DataConnector
     {
         DriveEntities db;
+
+        DataManager units;
+        DataManager brands;
+
         public MsSqlCeAdoConnector()
         {
             db = new DriveEntities();
 
             units = new UnitDataManager(db);
+            brands = new BrandDataManager(db);
         }
         public DataManager Spares
         {
@@ -24,7 +29,7 @@ namespace DatabaseMSSQLCE
                 return new SpareDataManager(db);
             }
         }
-        DataManager units;
+        
         public DataManager Units
         {
             get {                
@@ -94,7 +99,7 @@ namespace DatabaseMSSQLCE
 
         public DataManager Brands
         {
-            get { throw new NotImplementedException(); }
+            get { return brands; }
         }
 
         public DataManager BankAccounts

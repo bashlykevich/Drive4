@@ -44,13 +44,13 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="MFO" Type="nvarchar" MaxLength="100" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
           <Property Name="Phone" Type="nvarchar" MaxLength="100" />
           <Property Name="Fax" Type="nvarchar" MaxLength="100" />
+          <Property Name="ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="BankAccount">
           <Key>
@@ -68,11 +68,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
           <Property Name="Code1C" Type="nvarchar" MaxLength="100" />
+          <Property Name="ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CurrencyRate">
           <Key>
@@ -286,7 +286,6 @@
           <EntitySet Name="Accounts" EntityType="DriveSqlCeModel.Account" />
           <EntitySet Name="Banks" EntityType="DriveSqlCeModel.Bank" />
           <EntitySet Name="BankAccounts" EntityType="DriveSqlCeModel.BankAccount" />
-          <EntitySet Name="Brands" EntityType="DriveSqlCeModel.Brand" />
           <EntitySet Name="CurrencyRates" EntityType="DriveSqlCeModel.CurrencyRate" />
           <EntitySet Name="Invoices" EntityType="DriveSqlCeModel.Invoice" />
           <EntitySet Name="OfferingInBasketItems" EntityType="DriveSqlCeModel.OfferingInBasketItem" />
@@ -301,6 +300,7 @@
           <EntitySet Name="VatRates" EntityType="DriveSqlCeModel.VatRate" />
           <EntitySet Name="Warehouses" EntityType="DriveSqlCeModel.Warehouse" />
           <EntitySet Name="Units" EntityType="DriveSqlCeModel.Unit" />
+          <EntitySet Name="Brands" EntityType="DriveSqlCeModel.Brand" />
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -340,16 +340,6 @@
           <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="IsMain" Type="Int32" />
           <Property Name="ModifiedOn" Type="DateTime" />
-        </EntityType>
-        <EntityType Name="Brand">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ModifiedOn" Type="DateTime" />
-          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-          <Property Name="Code1C" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="CurrencyRate">
           <Key>
@@ -544,6 +534,16 @@
           <Property Type="String" Name="Description" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="ID" Nullable="false" />
         </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="DateTime" Name="ModifiedOn" />
+          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Code1C" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -589,17 +589,6 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="IsMain" ColumnName="IsMain" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Brands">
-            <EntityTypeMapping TypeName="DriveSqlCeModel.Brand">
-              <MappingFragment StoreEntitySet="Brand">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Code1C" ColumnName="Code1C" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -810,6 +799,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Code1C" ColumnName="Code1C" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -834,7 +834,6 @@
         <EntityTypeShape EntityType="DriveSqlCeModel.Account" Width="1.5" PointX="0.625" PointY="0.75" Height="2.9417936197916665" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Bank" Width="1.5" PointX="2.75" PointY="0.75" Height="2.3648893229166665" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.BankAccount" Width="1.5" PointX="4.75" PointY="0.75" Height="2.3648893229166656" IsExpanded="true" />
-        <EntityTypeShape EntityType="DriveSqlCeModel.Brand" Width="1.5" PointX="0.75" PointY="4.75" Height="1.9802864583333335" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.CurrencyRate" Width="1.5" PointX="2.75" PointY="4.75" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Invoice" Width="1.5" PointX="4.75" PointY="4.75" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.OfferingInBasketItem" Width="1.5" PointX="6.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
@@ -849,6 +848,7 @@
         <EntityTypeShape EntityType="DriveSqlCeModel.VatRate" Width="1.5" PointX="10.75" PointY="6.75" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Warehouse" Width="1.5" PointX="10.75" PointY="9.75" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Unit" Width="1.5" PointX="5.375" PointY="10.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.Brand" Width="1.5" PointX="11.375" PointY="12.75" Height="1.9802864583333388" />
       </Diagram>
     </Diagrams>
   </Designer>

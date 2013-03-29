@@ -76,6 +76,12 @@
     </ApplicationDefinition>
     <Compile Include="Core\DriveController.cs" />
     <Compile Include="Core\Enumerations\Enums.cs" />
+    <Compile Include="WpfPresenter\Components\Brand\BrandEditWindow.xaml.cs">
+      <DependentUpon>BrandEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WpfPresenter\Components\Brand\BrandGridWindow.xaml.cs">
+      <DependentUpon>BrandGridWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WpfPresenter\Components\Unit\UnitEditWindow.xaml.cs">
       <DependentUpon>UnitEditWindow.xaml</DependentUpon>
     </Compile>
@@ -100,6 +106,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WpfPresenter\Components\Brand\BrandEditWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WpfPresenter\Components\Brand\BrandGridWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="WpfPresenter\Components\Unit\UnitEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,6 +211,7 @@
   <ItemGroup>
     <Resource Include="WpfPresenter\Images\IconRefresh.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

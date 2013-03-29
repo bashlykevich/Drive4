@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Drive4.WpfPresenter.Components.Unit;
+using Drive4.WpfPresenter.Components.Brand;
 
 namespace Drive4
 {
@@ -22,18 +23,27 @@ namespace Drive4
     {
         public MainWindow()
         {
-            InitializeComponent();
-            GoToUnitDictionary();
+            InitializeComponent();            
         }
 
         private void miUnits_Click(object sender, RoutedEventArgs e)
         {
-            GoToUnitDictionary();
+            GoToDictionaryUnit();
         }
-        void GoToUnitDictionary()
+        void GoToDictionaryBrand()
+        {
+            BrandGridWindow w = new BrandGridWindow();
+            w.Show();
+        }
+        void GoToDictionaryUnit()
         {
             UnitGridWindow w = new UnitGridWindow();
             w.Show();
+        }
+
+        private void miBrands_Click(object sender, RoutedEventArgs e)
+        {
+            GoToDictionaryBrand();
         }
     }
 }
