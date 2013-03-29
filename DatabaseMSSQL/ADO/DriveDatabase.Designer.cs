@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
-namespace Drive4.MsSqlAdo.ADO
+namespace DatabaseMSSQL.ADO
 {
     #region Contexts
     

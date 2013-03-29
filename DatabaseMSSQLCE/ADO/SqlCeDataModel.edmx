@@ -1,0 +1,856 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DriveSqlCeModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="DriveSqlCeModelStoreContainer">
+          <EntitySet Name="Account" EntityType="DriveSqlCeModel.Store.Account" store:Type="Tables" />
+          <EntitySet Name="Bank" EntityType="DriveSqlCeModel.Store.Bank" store:Type="Tables" />
+          <EntitySet Name="BankAccount" EntityType="DriveSqlCeModel.Store.BankAccount" store:Type="Tables" />
+          <EntitySet Name="Brand" EntityType="DriveSqlCeModel.Store.Brand" store:Type="Tables" />
+          <EntitySet Name="CurrencyRate" EntityType="DriveSqlCeModel.Store.CurrencyRate" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="DriveSqlCeModel.Store.Invoice" store:Type="Tables" />
+          <EntitySet Name="OfferingInBasketItem" EntityType="DriveSqlCeModel.Store.OfferingInBasketItem" store:Type="Tables" />
+          <EntitySet Name="Overpricing" EntityType="DriveSqlCeModel.Store.Overpricing" store:Type="Tables" />
+          <EntitySet Name="ProfileBankAccount" EntityType="DriveSqlCeModel.Store.ProfileBankAccount" store:Type="Tables" />
+          <EntitySet Name="Sale" EntityType="DriveSqlCeModel.Store.Sale" store:Type="Tables" />
+          <EntitySet Name="SettingsProfile" EntityType="DriveSqlCeModel.Store.SettingsProfile" store:Type="Tables" />
+          <EntitySet Name="Spare" EntityType="DriveSqlCeModel.Store.Spare" store:Type="Tables" />
+          <EntitySet Name="SpareAnalogue" EntityType="DriveSqlCeModel.Store.SpareAnalogue" store:Type="Tables" />
+          <EntitySet Name="SpareIncome" EntityType="DriveSqlCeModel.Store.SpareIncome" store:Type="Tables" />
+          <EntitySet Name="SpareOutgo" EntityType="DriveSqlCeModel.Store.SpareOutgo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="DriveSqlCeModel.Store.Unit" store:Type="Tables" />
+          <EntitySet Name="VatRate" EntityType="DriveSqlCeModel.Store.VatRate" store:Type="Tables" />
+          <EntitySet Name="Warehouse" EntityType="DriveSqlCeModel.Store.Warehouse" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="UNN" Type="nvarchar" MaxLength="50" />
+          <Property Name="OKPO" Type="nvarchar" MaxLength="50" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="ShippingBase" Type="nvarchar" MaxLength="500" />
+          <Property Name="ShippingPoint" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="MFO" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="BankAccount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BankAccount" Type="nvarchar" MaxLength="250" />
+          <Property Name="BankID" Type="int" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsMain" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="Code1C" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CurrencyRate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RateDate" Type="datetime" />
+          <Property Name="CurrencyID" Type="int" />
+          <Property Name="Rate" Type="money" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="InvoiceDate" Type="datetime" />
+          <Property Name="InvoiceSum" Type="money" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="BankAccountID" Type="int" />
+          <Property Name="InvoiceNumber" Type="int" />
+        </EntityType>
+        <EntityType Name="OfferingInBasketItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BasketItemID" Type="int" />
+          <Property Name="OfferingIncomeID" Type="int" />
+          <Property Name="OfferingOutgoID" Type="int" />
+          <Property Name="Q" Type="float" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Overpricing">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IsCommited" Type="int" />
+          <Property Name="IncreasePers" Type="float" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Num" Type="int" />
+        </EntityType>
+        <EntityType Name="ProfileBankAccount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BankAccount" Type="nvarchar" MaxLength="100" />
+          <Property Name="BankID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsMain" Type="int" />
+          <Property Name="ProfileID" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SaleNumber" Type="int" />
+          <Property Name="SaleDate" Type="datetime" />
+          <Property Name="PUsd" Type="money" />
+          <Property Name="PEur" Type="money" />
+          <Property Name="PByr" Type="money" />
+          <Property Name="PRur" Type="money" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="250" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SettingsProfile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="500" />
+          <Property Name="UNN" Type="nvarchar" MaxLength="100" />
+          <Property Name="BasicCurrencyID" Type="int" />
+          <Property Name="Defaults_IsCashless" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="AddressJur" Type="nvarchar" MaxLength="500" />
+          <Property Name="AddressFact" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsCurrent" Type="int" />
+          <Property Name="Defaults_IncomeCurrencyID" Type="int" />
+          <Property Name="LoadPoint" Type="nvarchar" MaxLength="500" />
+          <Property Name="CompanyHead" Type="nvarchar" MaxLength="250" />
+          <Property Name="SeniorAccountant" Type="nvarchar" MaxLength="250" />
+          <Property Name="OKPO" Type="nvarchar" MaxLength="100" />
+          <Property Name="Defaults_SearchFieldIndex" Type="int" />
+          <Property Name="Defaults_UseScanner" Type="int" />
+          <Property Name="Defaults_SimpleInput" Type="int" />
+          <Property Name="Defaults_StrictSearch" Type="int" />
+          <Property Name="IncomeSmart" Type="int" />
+          <Property Name="DefaultUserID" Type="int" />
+        </EntityType>
+        <EntityType Name="Spare">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="750" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="QRest" Type="float" />
+          <Property Name="QDemand" Type="float" />
+          <Property Name="BrandID" Type="int" />
+          <Property Name="GroupID" Type="int" />
+          <Property Name="UnitID" Type="int" />
+          <Property Name="CodeS" Type="nvarchar" MaxLength="250" />
+          <Property Name="CodeI" Type="nvarchar" MaxLength="250" />
+          <Property Name="Code1C" Type="nvarchar" MaxLength="100" />
+          <Property Name="QRests" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SpareAnalogue">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SpareID" Type="int" />
+          <Property Name="AnalogueSpareID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SpareIncome">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Num" Type="nvarchar" MaxLength="50" />
+          <Property Name="IncomeDate" Type="datetime" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="BaseDoc" Type="nvarchar" MaxLength="500" />
+          <Property Name="BaseDocDate" Type="datetime" />
+          <Property Name="WarehouseID" Type="int" />
+          <Property Name="CurrencyID" Type="int" />
+          <Property Name="IsCashless" Type="int" />
+          <Property Name="IsRemainsInput" Type="int" />
+          <Property Name="IDN" Type="int" />
+        </EntityType>
+        <EntityType Name="SpareOutgo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="CurrencyID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsOpened" Type="int" />
+          <Property Name="IDN" Type="int" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="UNN" Type="nvarchar" MaxLength="500" />
+          <Property Name="Unloading" Type="nvarchar" MaxLength="500" />
+          <Property Name="Basement" Type="nvarchar" MaxLength="500" />
+          <Property Name="Driver" Type="nvarchar" MaxLength="500" />
+          <Property Name="Truck" Type="nvarchar" MaxLength="500" />
+          <Property Name="Tripsheet" Type="nvarchar" MaxLength="500" />
+          <Property Name="Deliverer" Type="nvarchar" MaxLength="500" />
+          <Property Name="Accepter" Type="nvarchar" MaxLength="500" />
+          <Property Name="Trailer" Type="nvarchar" MaxLength="500" />
+          <Property Name="TruckOwner" Type="nvarchar" MaxLength="500" />
+          <Property Name="Warrant" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsGhost" Type="int" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="OutgoDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="VatRate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rate" Type="float" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <!--Errors Found During Generation:
+            warning 6013: The table/view 'SpareGroup' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+            
+            <EntityType Name="SpareGroup">
+              <Property Name="ID" Type="nvarchar" MaxLength="100" />
+              <Property Name="ModifiedOn" Type="nvarchar" MaxLength="100" />
+              <Property Name="Name" Type="nvarchar" MaxLength="100" />
+              <Property Name="Description" Type="nvarchar" MaxLength="100" />
+              <Property Name="ParentGroupID" Type="nvarchar" MaxLength="100" />
+              <Property Name="Code1C" Type="nvarchar" MaxLength="100" />
+            </EntityType>-->
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DriveSqlCeModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DriveEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="DriveSqlCeModel.Account" />
+          <EntitySet Name="Banks" EntityType="DriveSqlCeModel.Bank" />
+          <EntitySet Name="BankAccounts" EntityType="DriveSqlCeModel.BankAccount" />
+          <EntitySet Name="Brands" EntityType="DriveSqlCeModel.Brand" />
+          <EntitySet Name="CurrencyRates" EntityType="DriveSqlCeModel.CurrencyRate" />
+          <EntitySet Name="Invoices" EntityType="DriveSqlCeModel.Invoice" />
+          <EntitySet Name="OfferingInBasketItems" EntityType="DriveSqlCeModel.OfferingInBasketItem" />
+          <EntitySet Name="Overpricings" EntityType="DriveSqlCeModel.Overpricing" />
+          <EntitySet Name="ProfileBankAccounts" EntityType="DriveSqlCeModel.ProfileBankAccount" />
+          <EntitySet Name="Sales" EntityType="DriveSqlCeModel.Sale" />
+          <EntitySet Name="SettingsProfiles" EntityType="DriveSqlCeModel.SettingsProfile" />
+          <EntitySet Name="Spares" EntityType="DriveSqlCeModel.Spare" />
+          <EntitySet Name="SpareAnalogues" EntityType="DriveSqlCeModel.SpareAnalogue" />
+          <EntitySet Name="SpareIncomes" EntityType="DriveSqlCeModel.SpareIncome" />
+          <EntitySet Name="SpareOutgoes" EntityType="DriveSqlCeModel.SpareOutgo" />
+          <EntitySet Name="Units" EntityType="DriveSqlCeModel.Unit" />
+          <EntitySet Name="VatRates" EntityType="DriveSqlCeModel.VatRate" />
+          <EntitySet Name="Warehouses" EntityType="DriveSqlCeModel.Warehouse" />
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="UNN" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="OKPO" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="Address" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ShippingBase" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ShippingPoint" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="MFO" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Fax" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="BankAccount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankAccount1" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="BankID" Type="Int32" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="IsMain" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Code1C" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CurrencyRate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RateDate" Type="DateTime" />
+          <Property Name="CurrencyID" Type="Int32" />
+          <Property Name="Rate" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+          <Property Name="InvoiceDate" Type="DateTime" />
+          <Property Name="InvoiceSum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="BankAccountID" Type="Int32" />
+          <Property Name="InvoiceNumber" Type="Int32" />
+        </EntityType>
+        <EntityType Name="OfferingInBasketItem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BasketItemID" Type="Int32" />
+          <Property Name="OfferingIncomeID" Type="Int32" />
+          <Property Name="OfferingOutgoID" Type="Int32" />
+          <Property Name="Q" Type="Double" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Overpricing">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+          <Property Name="IsCommited" Type="Int32" />
+          <Property Name="IncreasePers" Type="Double" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Num" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ProfileBankAccount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankAccount" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="BankID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="IsMain" Type="Int32" />
+          <Property Name="ProfileID" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleNumber" Type="Int32" />
+          <Property Name="SaleDate" Type="DateTime" />
+          <Property Name="PUsd" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PEur" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PByr" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PRur" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Comments" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="SettingsProfile">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="UNN" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="BasicCurrencyID" Type="Int32" />
+          <Property Name="Defaults_IsCashless" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+          <Property Name="AddressJur" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="AddressFact" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="IsCurrent" Type="Int32" />
+          <Property Name="Defaults_IncomeCurrencyID" Type="Int32" />
+          <Property Name="LoadPoint" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyHead" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="SeniorAccountant" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="OKPO" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Defaults_SearchFieldIndex" Type="Int32" />
+          <Property Name="Defaults_UseScanner" Type="Int32" />
+          <Property Name="Defaults_SimpleInput" Type="Int32" />
+          <Property Name="Defaults_StrictSearch" Type="Int32" />
+          <Property Name="IncomeSmart" Type="Int32" />
+          <Property Name="DefaultUserID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Spare">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+          <Property Name="Name" Type="String" MaxLength="750" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="QRest" Type="Double" />
+          <Property Name="QDemand" Type="Double" />
+          <Property Name="BrandID" Type="Int32" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="UnitID" Type="Int32" />
+          <Property Name="CodeS" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="CodeI" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Code1C" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="QRests" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="SpareAnalogue">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpareID" Type="Int32" />
+          <Property Name="AnalogueSpareID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="SpareIncome">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+          <Property Name="Num" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IncomeDate" Type="DateTime" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="BaseDoc" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="BaseDocDate" Type="DateTime" />
+          <Property Name="WarehouseID" Type="Int32" />
+          <Property Name="CurrencyID" Type="Int32" />
+          <Property Name="IsCashless" Type="Int32" />
+          <Property Name="IsRemainsInput" Type="Int32" />
+          <Property Name="IDN" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SpareOutgo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+          <Property Name="CurrencyID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="IsOpened" Type="Int32" />
+          <Property Name="IDN" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="UNN" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Unloading" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Basement" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Driver" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Truck" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Tripsheet" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Deliverer" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Accepter" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Trailer" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="TruckOwner" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Warrant" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="IsGhost" Type="Int32" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="OutgoDate" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+          <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="VatRate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Rate" Type="Double" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ModifiedOn" Type="DateTime" />
+          <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DriveSqlCeModelStoreContainer" CdmEntityContainer="DriveEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UNN" ColumnName="UNN" />
+                <ScalarProperty Name="OKPO" ColumnName="OKPO" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ShippingBase" ColumnName="ShippingBase" />
+                <ScalarProperty Name="ShippingPoint" ColumnName="ShippingPoint" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banks">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.Bank">
+              <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MFO" ColumnName="MFO" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankAccounts">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.BankAccount">
+              <MappingFragment StoreEntitySet="BankAccount">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BankAccount1" ColumnName="BankAccount" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsMain" ColumnName="IsMain" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Code1C" ColumnName="Code1C" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrencyRates">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.CurrencyRate">
+              <MappingFragment StoreEntitySet="CurrencyRate">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RateDate" ColumnName="RateDate" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="InvoiceSum" ColumnName="InvoiceSum" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="BankAccountID" ColumnName="BankAccountID" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfferingInBasketItems">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.OfferingInBasketItem">
+              <MappingFragment StoreEntitySet="OfferingInBasketItem">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BasketItemID" ColumnName="BasketItemID" />
+                <ScalarProperty Name="OfferingIncomeID" ColumnName="OfferingIncomeID" />
+                <ScalarProperty Name="OfferingOutgoID" ColumnName="OfferingOutgoID" />
+                <ScalarProperty Name="Q" ColumnName="Q" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Overpricings">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.Overpricing">
+              <MappingFragment StoreEntitySet="Overpricing">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="IsCommited" ColumnName="IsCommited" />
+                <ScalarProperty Name="IncreasePers" ColumnName="IncreasePers" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileBankAccounts">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.ProfileBankAccount">
+              <MappingFragment StoreEntitySet="ProfileBankAccount">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+                <ScalarProperty Name="BankID" ColumnName="BankID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsMain" ColumnName="IsMain" />
+                <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.Sale">
+              <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SaleNumber" ColumnName="SaleNumber" />
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="PUsd" ColumnName="PUsd" />
+                <ScalarProperty Name="PEur" ColumnName="PEur" />
+                <ScalarProperty Name="PByr" ColumnName="PByr" />
+                <ScalarProperty Name="PRur" ColumnName="PRur" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SettingsProfiles">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.SettingsProfile">
+              <MappingFragment StoreEntitySet="SettingsProfile">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="UNN" ColumnName="UNN" />
+                <ScalarProperty Name="BasicCurrencyID" ColumnName="BasicCurrencyID" />
+                <ScalarProperty Name="Defaults_IsCashless" ColumnName="Defaults_IsCashless" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="AddressJur" ColumnName="AddressJur" />
+                <ScalarProperty Name="AddressFact" ColumnName="AddressFact" />
+                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
+                <ScalarProperty Name="Defaults_IncomeCurrencyID" ColumnName="Defaults_IncomeCurrencyID" />
+                <ScalarProperty Name="LoadPoint" ColumnName="LoadPoint" />
+                <ScalarProperty Name="CompanyHead" ColumnName="CompanyHead" />
+                <ScalarProperty Name="SeniorAccountant" ColumnName="SeniorAccountant" />
+                <ScalarProperty Name="OKPO" ColumnName="OKPO" />
+                <ScalarProperty Name="Defaults_SearchFieldIndex" ColumnName="Defaults_SearchFieldIndex" />
+                <ScalarProperty Name="Defaults_UseScanner" ColumnName="Defaults_UseScanner" />
+                <ScalarProperty Name="Defaults_SimpleInput" ColumnName="Defaults_SimpleInput" />
+                <ScalarProperty Name="Defaults_StrictSearch" ColumnName="Defaults_StrictSearch" />
+                <ScalarProperty Name="IncomeSmart" ColumnName="IncomeSmart" />
+                <ScalarProperty Name="DefaultUserID" ColumnName="DefaultUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Spares">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.Spare">
+              <MappingFragment StoreEntitySet="Spare">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="QRest" ColumnName="QRest" />
+                <ScalarProperty Name="QDemand" ColumnName="QDemand" />
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+                <ScalarProperty Name="CodeS" ColumnName="CodeS" />
+                <ScalarProperty Name="CodeI" ColumnName="CodeI" />
+                <ScalarProperty Name="Code1C" ColumnName="Code1C" />
+                <ScalarProperty Name="QRests" ColumnName="QRests" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpareAnalogues">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.SpareAnalogue">
+              <MappingFragment StoreEntitySet="SpareAnalogue">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SpareID" ColumnName="SpareID" />
+                <ScalarProperty Name="AnalogueSpareID" ColumnName="AnalogueSpareID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpareIncomes">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.SpareIncome">
+              <MappingFragment StoreEntitySet="SpareIncome">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="IncomeDate" ColumnName="IncomeDate" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="BaseDoc" ColumnName="BaseDoc" />
+                <ScalarProperty Name="BaseDocDate" ColumnName="BaseDocDate" />
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="IsCashless" ColumnName="IsCashless" />
+                <ScalarProperty Name="IsRemainsInput" ColumnName="IsRemainsInput" />
+                <ScalarProperty Name="IDN" ColumnName="IDN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpareOutgoes">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.SpareOutgo">
+              <MappingFragment StoreEntitySet="SpareOutgo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CurrencyID" ColumnName="CurrencyID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsOpened" ColumnName="IsOpened" />
+                <ScalarProperty Name="IDN" ColumnName="IDN" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="UNN" ColumnName="UNN" />
+                <ScalarProperty Name="Unloading" ColumnName="Unloading" />
+                <ScalarProperty Name="Basement" ColumnName="Basement" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="Truck" ColumnName="Truck" />
+                <ScalarProperty Name="Tripsheet" ColumnName="Tripsheet" />
+                <ScalarProperty Name="Deliverer" ColumnName="Deliverer" />
+                <ScalarProperty Name="Accepter" ColumnName="Accepter" />
+                <ScalarProperty Name="Trailer" ColumnName="Trailer" />
+                <ScalarProperty Name="TruckOwner" ColumnName="TruckOwner" />
+                <ScalarProperty Name="Warrant" ColumnName="Warrant" />
+                <ScalarProperty Name="IsGhost" ColumnName="IsGhost" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="OutgoDate" ColumnName="OutgoDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VatRates">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.VatRate">
+              <MappingFragment StoreEntitySet="VatRate">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouses">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouse">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="SqlCeDataModel" ZoomLevel="92">
+        <EntityTypeShape EntityType="DriveSqlCeModel.Account" Width="1.5" PointX="0.75" PointY="0.75" Height="2.9417936197916665" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.Bank" Width="1.5" PointX="2.75" PointY="0.75" Height="2.3648893229166665" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.BankAccount" Width="1.5" PointX="4.75" PointY="0.75" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.Brand" Width="1.5" PointX="0.75" PointY="4.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.CurrencyRate" Width="1.5" PointX="2.75" PointY="4.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.Invoice" Width="1.5" PointX="4.75" PointY="4.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.OfferingInBasketItem" Width="1.5" PointX="6.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.Overpricing" Width="1.5" PointX="6.75" PointY="3.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.ProfileBankAccount" Width="1.5" PointX="6.75" PointY="6.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.Sale" Width="1.5" PointX="0.75" PointY="7.75" Height="2.7494921875000031" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.SettingsProfile" Width="1.5" PointX="8.75" PointY="0.75" Height="4.8648079427083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.Spare" Width="1.5" PointX="2.75" PointY="8.75" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.SpareAnalogue" Width="1.5" PointX="8.75" PointY="6.75" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.SpareIncome" Width="1.5" PointX="8.75" PointY="9.75" Height="3.3263964843750031" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.SpareOutgo" Width="1.5" PointX="10.75" PointY="0.75" Height="5.0571093750000031" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.Unit" Width="1.5" PointX="4.75" PointY="10.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.VatRate" Width="1.5" PointX="10.75" PointY="6.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.Warehouse" Width="1.5" PointX="10.75" PointY="9.75" Height="1.7879850260416674" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

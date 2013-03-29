@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Drive4.Toolkit.Interfaces;
-using Drive4.MsSqlAdo;
 
 namespace Drive4.Core
 {
@@ -13,8 +12,8 @@ namespace Drive4.Core
         private static DriveController instance;
 
         private DriveController()
-        {            
-            DataConnector = new MsSqlAdoConnector();
+        {
+            DataConnector = new DatabaseMSSQLCE.MsSqlCeAdoConnector();
         }
 
         public static DriveController Instance
