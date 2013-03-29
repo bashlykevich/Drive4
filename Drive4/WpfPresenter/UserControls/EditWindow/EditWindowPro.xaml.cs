@@ -22,19 +22,24 @@ namespace Drive4.Toolkit.UserControls.EditWindow
     {
         DataManager manager;
         bool IsNewEntity = false;
+        UserControl FormContent;
+        Type EditWindowClass;
         public EditWindowPro(DataManager _manager, Type EditWindowClass)
         {
             InitializeComponent();
             manager = _manager;
             IsNewEntity = true;
-            grContent.Children.Add((UserControl)Activator.CreateInstance(EditWindowClass));
+            FormContent = (UserControl)Activator.CreateInstance(EditWindowClass);
+            grContent.Children.Add(FormContent);
+            this.Title = manager.Name;
         }
         public EditWindowPro(DataManager _manager, Type EditWindowClass,EntityObject item)
         {
             InitializeComponent();
             manager = _manager;
             IsNewEntity = false;
-            grContent.Children.Add((UserControl)Activator.CreateInstance(EditWindowClass));
+            FormContent = (UserControl)Activator.CreateInstance(EditWindowClass);
+            grContent.Children.Add(FormContent);
         }
         private EntityObject GetItemFromForm()
         {

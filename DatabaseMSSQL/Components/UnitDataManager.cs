@@ -77,5 +77,10 @@ namespace Drive4.MsSqlAdo.Components
                 return columns;
             }
         }
+
+        public string Name
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

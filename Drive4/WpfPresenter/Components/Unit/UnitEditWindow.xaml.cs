@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Objects.DataClasses;
 
 namespace Drive4.WpfPresenter.Components.Unit
 {
@@ -22,6 +23,12 @@ namespace Drive4.WpfPresenter.Components.Unit
         public UnitEditWindow()
         {
             InitializeComponent();
+        }
+        public EntityObject GetItemFromFields()
+        {
+            DatabaseMSSQLCE.ADO.Unit u = new DatabaseMSSQLCE.ADO.Unit();
+
+            return u;
         }
     }
 }

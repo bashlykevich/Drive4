@@ -9,7 +9,7 @@
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
+            <RowDefinition Height="55" />
            <RowDefinition Height="*" />
             
         </Grid.RowDefinitions>
@@ -18,23 +18,30 @@
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" 
-                    Margin="5"
+                    Margin="3"
                     Orientation="Horizontal">
+
             <Button Name="btnCreate"
-                    Width="70"
-                    Margin="2"
-                    Content="Create"
-                    Click="btnCreate_Click"/>
+                    ToolTip="Создать новую запись"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"                    
+                    Margin="2"                    
+                    Click="btnCreate_Click">
+                <Image Source="../../Images/IconAdd.png"  Height="40" Width="40" />
+            </Button>
             <Button Name="btnEdit"
-                    Width="70"
-                    Margin="2"
-                    Content="Edit"
-                    Click="btnEdit_Click"/>
-            <Button Name="btnDelete"
-                    Width="70"
-                    Margin="2"
-                    Content="Delete"
-                    Click="btnDelete_Click"/>
+                    Click="btnEdit_Click"
+                    ToolTip="Редактировать"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"                    
+                    Margin="2">
+                <Image Source="../../Images/IconEdit.png"  Height="40" Width="40" />
+            </Button>
+            <Button Name="btnDelete"                                        
+                    Click="btnDelete_Click"
+                    ToolTip="Удалить"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"                    
+                    Margin="2">
+                <Image Source="../../Images/IconDelete.png"  Height="40" Width="40" />
+            </Button>
         </StackPanel>
         <DataGrid
             ItemsSource="{Binding ItemsSource, ElementName=pageControl}" 

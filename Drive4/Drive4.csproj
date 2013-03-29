@@ -189,6 +189,15 @@
       <Name>DriveBase</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WpfPresenter\Images\IconCancel.png" />
+    <Resource Include="WpfPresenter\Images\IconOk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WpfPresenter\Images\IconAdd.png" />
+    <Resource Include="WpfPresenter\Images\IconDelete.png" />
+    <Resource Include="WpfPresenter\Images\IconEdit.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,26 +1,33 @@
 ﻿<Window x:Class="Drive4.Toolkit.UserControls.EditWindow.EditWindowPro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
         Title="WindowName" Height="400" Width="400">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
         <StackPanel
             Grid.Row="0"
-            Margin="3"
+            Margin="2"
             Orientation="Horizontal">
-            <Button Name="btnSave"
-                    Width="50"
-                    Margin="2"
-                    Content="Save"
-                    Click="btnSave_Click"/>
-            <Button Name="btnCancel"
-                    Width="50"
-                    Margin="2"
-                    Content="Cancel"
-                    Click="btnCancel_Click"/>
+            
+            <Button Name="btnSave"            
+                    Margin="1"                    
+                    Click="btnSave_Click"
+                    ToolTip="Сохранить и закрыть"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Image Source="../../Images/IconOk.png"  Height="40" Width="40" />
+            </Button>
+            
+            <Button Name="btnCancel"            
+                    Click="btnCancel_Click"
+                    Margin="1"                                        
+                    ToolTip="Закрыть без сохранения"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Image Source="../../Images/IconCancel.png"  Height="40" Width="40" />
+            </Button>
         </StackPanel>
         <Grid
             Name="grContent"

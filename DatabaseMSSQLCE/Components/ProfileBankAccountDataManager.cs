@@ -50,5 +50,10 @@ namespace Drive4.MsSqlCe.Components
         {
             get { throw new NotImplementedException(); }
         }
+
+        public string Name
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

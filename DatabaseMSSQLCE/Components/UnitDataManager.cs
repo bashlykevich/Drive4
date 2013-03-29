@@ -6,11 +6,13 @@ using Drive4.Toolkit.Interfaces;
 using DatabaseMSSQLCE.ADO;
 using System.Windows.Controls;
 using System.Windows.Data;
+using DriveBase.Tools;
 
 namespace Drive4.MsSqlCe.Components
 {
     class UnitDataManager : DataManager
     {
+        string name = "Единицы измерения";
         DriveEntities db;
         public UnitDataManager(DriveEntities db)
         {
@@ -52,29 +54,17 @@ namespace Drive4.MsSqlCe.Components
             get
             {
                 List<DataGridColumn> columns = new List<DataGridColumn>();
-                DataGridTextColumn dc = new DataGridTextColumn();
-                dc.Header = "ID";
-                dc.Binding = new Binding("ID");
-                columns.Add(dc);
-
-                dc = new DataGridTextColumn();
-                dc.Header = "Name";
-                dc.Binding = new Binding("Name");
-                columns.Add(dc);
-
-                dc = new DataGridTextColumn();
-                dc.Header = "Description";
-                dc.Binding = new Binding("Description");
-                columns.Add(dc);                                
-
-                dc = new DataGridTextColumn();
-                dc.Header = "ModifiedOn";
-                dc.Binding = new Binding("ModifiedOn");
-                columns.Add(dc);
-                
-                
+                columns.Add(Helper.GetDataGridTextColumn("ID", "ID", 0.1));
+                columns.Add(Helper.GetDataGridTextColumn("Название", "Name", 0.30));
+                columns.Add(Helper.GetDataGridTextColumn("Описание", "Description", 0.30));
+                columns.Add(Helper.GetDataGridTextColumn("Дата изменения", "ModifiedOn", 0.30));                              
                 return columns;
             }
+        }
+
+        public string Name
+        {
+            get { return name; }
         }
     }
 }

@@ -9,6 +9,10 @@ namespace Drive4.Toolkit.Interfaces
 {
     public interface DataManager
     {
+        string Name
+        {
+            get;
+        }
         void Create(EntityObject DataItemToCreate);
         void Update(EntityObject DataItemToUpdate);
         void Delete(int ID);
