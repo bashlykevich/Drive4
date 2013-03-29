@@ -34,24 +34,34 @@ namespace Drive4.Toolkit.UserControls.DataGrid
                 dgItems.Columns.Add(c);         
         }
         void Refresh()
-        {
+        {            
             dgItems.ItemsSource = manager.Retrieve();
         }
         void Create()
         {
-            Window EditWindow = new EditWindowPro(manager, EditWindowClass);            
-            EditWindow.Show();
+            Window EditWindow = new EditWindowPro(manager, EditWindowClass);
+            EditWindow.ShowDialog();
+            Refresh();            
         }
         void Edit()
         {
-            Window EditWindow = new EditWindowPro(manager, EditWindowClass, dgItems.SelectedItem as EntityObject);            
-            EditWindow.Show();
+            if (dgItems.SelectedItem != null)
+            {
+                Window EditWindow = new EditWindowPro(manager, EditWindowClass, dgItems.SelectedItem as EntityObject);
+                EditWindow.Show();
+                Refresh();
+            }
         }
         void Delete()
-        {
+        {            
+            List<int> IDs = new List<int>();
             foreach (EntityObject item in dgItems.SelectedItems)
             {
-                manager.Delete((int)item.EntityKey.EntityKeyValues[0].Value);
+                IDs.Add((int)item.EntityKey.EntityKeyValues[0].Value);
+            }
+            foreach (int ID in IDs)
+            {
+                manager.Delete(ID);
             }
         }
         private void btnCreate_Click(object sender, RoutedEventArgs e)
@@ -61,19 +71,27 @@ namespace Drive4.Toolkit.UserControls.DataGrid
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if(dgItems.SelectedItems.Count >0)
-                Edit();
+            Edit();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (dgItems.SelectedItems.Count > 0)
-                Delete();
+            Delete();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Refresh();
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
+        }
+
+        private void dgItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Edit();
         }
     }
 }

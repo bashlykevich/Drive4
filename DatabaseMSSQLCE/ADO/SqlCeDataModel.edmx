@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DriveSqlCeModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="DriveSqlCeModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="DriveSqlCeModelStoreContainer">
           <EntitySet Name="Account" EntityType="DriveSqlCeModel.Store.Account" store:Type="Tables" />
           <EntitySet Name="Bank" EntityType="DriveSqlCeModel.Store.Bank" store:Type="Tables" />
@@ -244,10 +244,10 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="VatRate">
           <Key>
@@ -278,8 +278,7 @@
               <Property Name="ParentGroupID" Type="nvarchar" MaxLength="100" />
               <Property Name="Code1C" Type="nvarchar" MaxLength="100" />
             </EntityType>-->
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DriveSqlCeModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -299,9 +298,9 @@
           <EntitySet Name="SpareAnalogues" EntityType="DriveSqlCeModel.SpareAnalogue" />
           <EntitySet Name="SpareIncomes" EntityType="DriveSqlCeModel.SpareIncome" />
           <EntitySet Name="SpareOutgoes" EntityType="DriveSqlCeModel.SpareOutgo" />
-          <EntitySet Name="Units" EntityType="DriveSqlCeModel.Unit" />
           <EntitySet Name="VatRates" EntityType="DriveSqlCeModel.VatRate" />
           <EntitySet Name="Warehouses" EntityType="DriveSqlCeModel.Warehouse" />
+          <EntitySet Name="Units" EntityType="DriveSqlCeModel.Unit" />
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -518,15 +517,6 @@
           <Property Name="AccountID" Type="Int32" />
           <Property Name="OutgoDate" Type="DateTime" />
         </EntityType>
-        <EntityType Name="Unit">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ModifiedOn" Type="DateTime" />
-          <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-        </EntityType>
         <EntityType Name="VatRate">
           <Key>
             <PropertyRef Name="ID" />
@@ -544,6 +534,15 @@
           <Property Name="Name" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="ModifiedOn" Type="DateTime" />
           <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModifiedOn" />
+          <Property Type="String" Name="Description" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -781,16 +780,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Units">
-            <EntityTypeMapping TypeName="DriveSqlCeModel.Unit">
-              <MappingFragment StoreEntitySet="Unit">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="VatRates">
             <EntityTypeMapping TypeName="DriveSqlCeModel.VatRate">
               <MappingFragment StoreEntitySet="VatRate">
@@ -808,6 +797,16 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -831,8 +830,8 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="SqlCeDataModel" ZoomLevel="92">
-        <EntityTypeShape EntityType="DriveSqlCeModel.Account" Width="1.5" PointX="0.75" PointY="0.75" Height="2.9417936197916665" IsExpanded="true" />
+      <Diagram Name="SqlCeDataModel" ZoomLevel="60">
+        <EntityTypeShape EntityType="DriveSqlCeModel.Account" Width="1.5" PointX="0.625" PointY="0.75" Height="2.9417936197916665" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Bank" Width="1.5" PointX="2.75" PointY="0.75" Height="2.3648893229166665" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.BankAccount" Width="1.5" PointX="4.75" PointY="0.75" Height="2.3648893229166656" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Brand" Width="1.5" PointX="0.75" PointY="4.75" Height="1.9802864583333335" IsExpanded="true" />
@@ -847,9 +846,9 @@
         <EntityTypeShape EntityType="DriveSqlCeModel.SpareAnalogue" Width="1.5" PointX="8.75" PointY="6.75" Height="1.9802864583333388" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.SpareIncome" Width="1.5" PointX="8.75" PointY="9.75" Height="3.3263964843750031" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.SpareOutgo" Width="1.5" PointX="10.75" PointY="0.75" Height="5.0571093750000031" IsExpanded="true" />
-        <EntityTypeShape EntityType="DriveSqlCeModel.Unit" Width="1.5" PointX="4.75" PointY="10.75" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.VatRate" Width="1.5" PointX="10.75" PointY="6.75" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Warehouse" Width="1.5" PointX="10.75" PointY="9.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.Unit" Width="1.5" PointX="5.375" PointY="10.75" Height="1.7879850260416674" />
       </Diagram>
     </Diagrams>
   </Designer>

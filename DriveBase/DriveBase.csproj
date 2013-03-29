@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\DataConnector.cs" />
     <Compile Include="Interfaces\DataManager.cs" />
+    <Compile Include="Interfaces\DataObjectForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\Helper.cs" />
   </ItemGroup>

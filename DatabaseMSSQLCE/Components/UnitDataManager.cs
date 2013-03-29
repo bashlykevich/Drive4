@@ -12,8 +12,16 @@ namespace Drive4.MsSqlCe.Components
 {
     class UnitDataManager : DataManager
     {
+        Type type = typeof(Unit);
         string name = "Единицы измерения";
         DriveEntities db;
+        int NextID
+        {
+            get
+            {
+                return db.Units.NextId(x => x.ID);
+            }
+        }
         public UnitDataManager(DriveEntities db)
         {
             this.db = db;
@@ -21,27 +29,37 @@ namespace Drive4.MsSqlCe.Components
 
         public void Create(System.Data.Objects.DataClasses.EntityObject DataItemToCreate)
         {
-            throw new NotImplementedException();
+            Unit u = DataItemToCreate as Unit;
+            u.ID = this.NextID;
+            db.AddToUnits(u);
+            db.SaveChanges();
         }
 
         public void Update(System.Data.Objects.DataClasses.EntityObject DataItemToUpdate)
         {
-            throw new NotImplementedException();
+            Unit upd = DataItemToUpdate as Unit;
+            Unit u = db.Units.FirstOrDefault(x => x.ID == upd.ID);
+            u.Name = upd.Name;
+            u.ModifiedOn = upd.ModifiedOn;
+            u.Description = upd.Description;
+            db.SaveChanges();
         }
 
         public void Delete(int ID)
-        {
-            throw new NotImplementedException();
+        {            
+            Unit u = db.Units.FirstOrDefault(x => x.ID == ID);
+            db.DeleteObject(u);
+            db.SaveChanges();
         }
 
         public System.Data.Objects.DataClasses.EntityObject Retrieve(int ID)
         {
-            throw new NotImplementedException();
+            return (from s in db.Units where s.ID == ID select s) as Unit;
         }
 
         public IEnumerable<System.Data.Objects.DataClasses.EntityObject> Retrieve()
         {
-            return db.Units;
+            return from s in db.Units select s;
         }
 
         public IEnumerable<System.Data.Objects.DataClasses.EntityObject> Retrieve(Dictionary<string, string> SQLFilterParameters)
@@ -69,7 +87,7 @@ namespace Drive4.MsSqlCe.Components
 
         public Type EntityType
         {
-            get { throw new NotImplementedException(); }
+            get { return type; }
         }
     }
 }

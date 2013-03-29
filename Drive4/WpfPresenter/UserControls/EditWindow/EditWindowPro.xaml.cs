@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Drive4.Toolkit.Interfaces;
 using System.Data.Objects.DataClasses;
+using DriveBase.Interfaces;
 
 namespace Drive4.Toolkit.UserControls.EditWindow
 {
@@ -40,10 +41,15 @@ namespace Drive4.Toolkit.UserControls.EditWindow
             IsNewEntity = false;
             FormContent = (UserControl)Activator.CreateInstance(EditWindowClass);
             grContent.Children.Add(FormContent);
+            this.FillFormContent(item);
+        }
+        void FillFormContent(EntityObject obj)
+        {
+            (FormContent as DataObjectForm).FillFormContent(obj);
         }
         private EntityObject GetItemFromForm()
         {
-            throw new NotImplementedException();
+            return (FormContent as DataObjectForm).EntityObject;
         }
         private void Post()
         {

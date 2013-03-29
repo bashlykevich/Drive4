@@ -308,22 +308,6 @@ namespace DatabaseMSSQLCE.ADO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Unit> Units
-        {
-            get
-            {
-                if ((_Units == null))
-                {
-                    _Units = base.CreateObjectSet<Unit>("Units");
-                }
-                return _Units;
-            }
-        }
-        private ObjectSet<Unit> _Units;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<VatRate> VatRates
         {
             get
@@ -352,6 +336,22 @@ namespace DatabaseMSSQLCE.ADO
             }
         }
         private ObjectSet<Warehouse> _Warehouses;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Unit> Units
+        {
+            get
+            {
+                if ((_Units == null))
+                {
+                    _Units = base.CreateObjectSet<Unit>("Units");
+                }
+                return _Units;
+            }
+        }
+        private ObjectSet<Unit> _Units;
 
         #endregion
 
@@ -478,14 +478,6 @@ namespace DatabaseMSSQLCE.ADO
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Units EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToUnits(Unit unit)
-        {
-            base.AddObject("Units", unit);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the VatRates EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToVatRates(VatRate vatRate)
@@ -499,6 +491,14 @@ namespace DatabaseMSSQLCE.ADO
         public void AddToWarehouses(Warehouse warehouse)
         {
             base.AddObject("Warehouses", warehouse);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Units EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUnits(Unit unit)
+        {
+            base.AddObject("Units", unit);
         }
 
         #endregion
@@ -4392,33 +4392,6 @@ namespace DatabaseMSSQLCE.ADO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 ID
-        {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                if (_ID != value)
-                {
-                    OnIDChanging(value);
-                    ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ID");
-                    OnIDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
-        partial void OnIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Name
@@ -4487,6 +4460,33 @@ namespace DatabaseMSSQLCE.ADO
         private global::System.String _Description;
         partial void OnDescriptionChanging(global::System.String value);
         partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
 
         #endregion
 

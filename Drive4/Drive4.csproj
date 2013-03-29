@@ -180,10 +180,6 @@
       <Project>{35FEC306-DA73-4298-8D04-3C25DFF5FDB2}</Project>
       <Name>DatabaseMSSQLCE</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DatabaseMSSQL\DatabaseMSSQL.csproj">
-      <Project>{183A58BF-0687-4AB8-9212-E68876A3B303}</Project>
-      <Name>DatabaseMSSQL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DriveBase\DriveBase.csproj">
       <Project>{0023A666-88D9-4FB2-ACD8-A277C7D6E4B6}</Project>
       <Name>DriveBase</Name>
@@ -197,6 +193,9 @@
     <Resource Include="WpfPresenter\Images\IconAdd.png" />
     <Resource Include="WpfPresenter\Images\IconDelete.png" />
     <Resource Include="WpfPresenter\Images\IconEdit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WpfPresenter\Images\IconRefresh.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -42,9 +42,16 @@
                     Margin="2">
                 <Image Source="../../Images/IconDelete.png"  Height="40" Width="40" />
             </Button>
+            <Button Name="btnRefresh"                                        
+                    Click="btnRefresh_Click"
+                    ToolTip="Обновить"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"                    
+                    Margin="2">
+                <Image Source="../../Images/IconRefresh.png"  Height="40" Width="40" />
+            </Button>
         </StackPanel>
         <DataGrid
-            ItemsSource="{Binding ItemsSource, ElementName=pageControl}" 
+            ItemsSource="{Binding ItemsSource}" 
             Name="dgItems"            
             IsReadOnly="True"
             CanUserResizeRows="False"
@@ -53,7 +60,9 @@
             VerticalGridLinesBrush="LightGray"
             HorizontalScrollBarVisibility="Disabled"
             SelectionMode="Single"
+            MouseDoubleClick="dgItems_MouseDoubleClick"
             SelectionUnit="FullRow"            
+            AutoGenerateColumns="False"
             Grid.Column="0"
             Grid.Row="1">
             <DataGrid.ContextMenu>

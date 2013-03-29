@@ -9,13 +9,12 @@
              mc:Ignorable="d">
     <Grid>
         <StackPanel>
-            <TextBox 
+            <TextBox
+                Name="edtName"
                 Margin="2"
                 HorizontalAlignment="Stretch"/>
             <TextBox 
-                Margin="2"
-                HorizontalAlignment="Stretch"/>
-            <TextBox 
+                Name="edtDescription"
                 Margin="2"
                 HorizontalAlignment="Stretch"/>
         </StackPanel>
