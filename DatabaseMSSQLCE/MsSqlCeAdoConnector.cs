@@ -13,7 +13,9 @@ namespace DatabaseMSSQLCE
         DriveEntities db;
         public MsSqlCeAdoConnector()
         {
-            db = new DriveEntities();            
+            db = new DriveEntities();
+
+            units = new UnitDataManager(db);
         }
         public DataManager Spares
         {
@@ -22,11 +24,11 @@ namespace DatabaseMSSQLCE
                 return new SpareDataManager(db);
             }
         }
-
+        DataManager units;
         public DataManager Units
         {
-            get {
-                return new UnitDataManager(db);
+            get {                
+                return units;
             }
         }
 

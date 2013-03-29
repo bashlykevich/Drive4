@@ -23,9 +23,14 @@ namespace Drive4
         public MainWindow()
         {
             InitializeComponent();
+            GoToUnitDictionary();
         }
 
         private void miUnits_Click(object sender, RoutedEventArgs e)
+        {
+            GoToUnitDictionary();
+        }
+        void GoToUnitDictionary()
         {
             UnitGridWindow w = new UnitGridWindow();
             w.Show();
