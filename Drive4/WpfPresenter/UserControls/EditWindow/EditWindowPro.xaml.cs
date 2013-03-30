@@ -12,7 +12,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Drive4.Toolkit.Interfaces;
 using System.Data.Objects.DataClasses;
-using DriveBase.Interfaces;
 
 namespace Drive4.Toolkit.UserControls.EditWindow
 {
@@ -24,13 +23,14 @@ namespace Drive4.Toolkit.UserControls.EditWindow
         DataManager manager;
         bool IsNewEntity = false;
         UserControl FormContent;
-        Type EditWindowClass;
+        
         public EditWindowPro(DataManager _manager, Type EditWindowClass)
         {
             InitializeComponent();
             manager = _manager;
             IsNewEntity = true;
             FormContent = (UserControl)Activator.CreateInstance(EditWindowClass);
+            FormContent.DataContext = Activator.CreateInstance(manager.EntityType);
             grContent.Children.Add(FormContent);
             this.Title = manager.Name;
         }
@@ -41,15 +41,16 @@ namespace Drive4.Toolkit.UserControls.EditWindow
             IsNewEntity = false;
             FormContent = (UserControl)Activator.CreateInstance(EditWindowClass);
             grContent.Children.Add(FormContent);
+            this.Title = manager.Name;
             this.FillFormContent(item);
         }
         void FillFormContent(EntityObject obj)
         {
-            (FormContent as DataObjectForm).FillFormContent(obj);
+            FormContent.DataContext = obj;            
         }
         private EntityObject GetItemFromForm()
         {
-            return (FormContent as DataObjectForm).EntityObject;
+            return FormContent.DataContext as EntityObject;
         }
         private void Post()
         {

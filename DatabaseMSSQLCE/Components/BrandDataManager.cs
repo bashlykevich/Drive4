@@ -83,5 +83,10 @@ namespace Drive4.MsSqlCe.Components
         {
             get { return name; }
         }
+
+        public Type EntityType
+        {
+            get { return typeof(Brand); }
+        }
     }
 }

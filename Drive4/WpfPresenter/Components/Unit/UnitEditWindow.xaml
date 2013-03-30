@@ -11,10 +11,12 @@
         <StackPanel>
             <TextBox
                 Name="edtName"
+                Text="{Binding Path=Name, Mode=TwoWay}"
                 Margin="2"
                 HorizontalAlignment="Stretch"/>
             <TextBox 
                 Name="edtDescription"
+                Text="{Binding Path=Description, Mode=TwoWay}"
                 Margin="2"
                 HorizontalAlignment="Stretch"/>
         </StackPanel>

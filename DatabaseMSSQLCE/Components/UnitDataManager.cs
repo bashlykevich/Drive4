@@ -30,6 +30,7 @@ namespace Drive4.MsSqlCe.Components
         {
             Unit u = DataItemToCreate as Unit;
             u.ID = this.NextID;
+            u.ModifiedOn = DateTime.Now;
             db.AddToUnits(u);
             db.SaveChanges();
         }
@@ -39,7 +40,7 @@ namespace Drive4.MsSqlCe.Components
             Unit upd = DataItemToUpdate as Unit;
             Unit u = db.Units.FirstOrDefault(x => x.ID == upd.ID);
             u.Name = upd.Name;
-            u.ModifiedOn = upd.ModifiedOn;
+            u.ModifiedOn = DateTime.Now;
             u.Description = upd.Description;
             db.SaveChanges();
         }
@@ -82,6 +83,11 @@ namespace Drive4.MsSqlCe.Components
         public string Name
         {
             get { return name; }
+        }
+
+        public Type EntityType
+        {
+            get { return typeof(Unit); }
         }
     }
 }
