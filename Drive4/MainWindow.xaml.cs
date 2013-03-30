@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Drive4.WpfPresenter.Components.Unit;
 using Drive4.WpfPresenter.Components.Brand;
+using Drive4.WpfPresenter.Components.Spare;
 
 namespace Drive4
 {
@@ -40,10 +41,19 @@ namespace Drive4
             UnitGridWindow w = new UnitGridWindow();
             w.Show();
         }
-
+        void GoToDictionarySpare()
+        {
+            SpareGridWindow w = new SpareGridWindow();
+            w.Show();
+        }
         private void miBrands_Click(object sender, RoutedEventArgs e)
         {
             GoToDictionaryBrand();
+        }
+
+        private void miSpares_Click(object sender, RoutedEventArgs e)
+        {
+            GoToDictionarySpare();
         }
     }
 }

@@ -33,7 +33,11 @@ namespace Drive4.MsSqlCe.Components
         {
             throw new NotImplementedException();
         }
-
+        public Type EditWindow
+        {
+            get;
+            set;
+        }
         public IEnumerable<System.Data.Objects.DataClasses.EntityObject> Retrieve()
         {
             throw new NotImplementedException();

@@ -14,7 +14,11 @@ namespace Drive4.MsSqlCe.Components
         {
             this.db = db;
         }
-
+        public Type EditWindow
+        {
+            get;
+            set;
+        }
         public void Create(System.Data.Objects.DataClasses.EntityObject DataItemToCreate)
         {
             throw new NotImplementedException();

@@ -26,6 +26,9 @@
                 <MenuItem Name="miBrands" Header="Бренды"
                           Click="miBrands_Click">
                 </MenuItem>
+                <MenuItem Name="miSpares" Header="Запчасти"
+                          Click="miSpares_Click">
+                </MenuItem>
             </MenuItem>
         </Menu>
     </Grid>

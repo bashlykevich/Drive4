@@ -173,7 +173,6 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="Name" Type="nvarchar" MaxLength="750" />
           <Property Name="Description" Type="nvarchar" MaxLength="1000" />
@@ -186,6 +185,7 @@
           <Property Name="CodeI" Type="nvarchar" MaxLength="250" />
           <Property Name="Code1C" Type="nvarchar" MaxLength="100" />
           <Property Name="QRests" Type="nvarchar" MaxLength="500" />
+          <Property Name="ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SpareAnalogue">
           <Key>
@@ -293,7 +293,6 @@
           <EntitySet Name="ProfileBankAccounts" EntityType="DriveSqlCeModel.ProfileBankAccount" />
           <EntitySet Name="Sales" EntityType="DriveSqlCeModel.Sale" />
           <EntitySet Name="SettingsProfiles" EntityType="DriveSqlCeModel.SettingsProfile" />
-          <EntitySet Name="Spares" EntityType="DriveSqlCeModel.Spare" />
           <EntitySet Name="SpareAnalogues" EntityType="DriveSqlCeModel.SpareAnalogue" />
           <EntitySet Name="SpareIncomes" EntityType="DriveSqlCeModel.SpareIncome" />
           <EntitySet Name="SpareOutgoes" EntityType="DriveSqlCeModel.SpareOutgo" />
@@ -301,6 +300,7 @@
           <EntitySet Name="Warehouses" EntityType="DriveSqlCeModel.Warehouse" />
           <EntitySet Name="Units" EntityType="DriveSqlCeModel.Unit" />
           <EntitySet Name="Brands" EntityType="DriveSqlCeModel.Brand" />
+          <EntitySet Name="Spares" EntityType="DriveSqlCeModel.Spare" />
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -436,24 +436,6 @@
           <Property Name="IncomeSmart" Type="Int32" />
           <Property Name="DefaultUserID" Type="Int32" />
         </EntityType>
-        <EntityType Name="Spare">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ModifiedOn" Type="DateTime" />
-          <Property Name="Name" Type="String" MaxLength="750" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
-          <Property Name="QRest" Type="Double" />
-          <Property Name="QDemand" Type="Double" />
-          <Property Name="BrandID" Type="Int32" />
-          <Property Name="GroupID" Type="Int32" />
-          <Property Name="UnitID" Type="Int32" />
-          <Property Name="CodeS" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-          <Property Name="CodeI" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-          <Property Name="Code1C" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="QRests" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
-        </EntityType>
         <EntityType Name="SpareAnalogue">
           <Key>
             <PropertyRef Name="ID" />
@@ -542,6 +524,24 @@
           <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Description" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Code1C" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Spare">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="DateTime" Name="ModifiedOn" />
+          <Property Type="String" Name="Name" MaxLength="750" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="QRest" />
+          <Property Type="Double" Name="QDemand" />
+          <Property Type="Int32" Name="BrandID" />
+          <Property Type="Int32" Name="GroupID" />
+          <Property Type="Int32" Name="UnitID" />
+          <Property Type="String" Name="CodeS" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CodeI" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Code1C" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="QRests" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="ID" Nullable="false" />
         </EntityType>
       </Schema>
@@ -694,25 +694,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Spares">
-            <EntityTypeMapping TypeName="DriveSqlCeModel.Spare">
-              <MappingFragment StoreEntitySet="Spare">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="QRest" ColumnName="QRest" />
-                <ScalarProperty Name="QDemand" ColumnName="QDemand" />
-                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
-                <ScalarProperty Name="CodeS" ColumnName="CodeS" />
-                <ScalarProperty Name="CodeI" ColumnName="CodeI" />
-                <ScalarProperty Name="Code1C" ColumnName="Code1C" />
-                <ScalarProperty Name="QRests" ColumnName="QRests" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SpareAnalogues">
             <EntityTypeMapping TypeName="DriveSqlCeModel.SpareAnalogue">
               <MappingFragment StoreEntitySet="SpareAnalogue">
@@ -810,6 +791,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Spares">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.Spare">
+              <MappingFragment StoreEntitySet="Spare">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="QRests" ColumnName="QRests" />
+                <ScalarProperty Name="Code1C" ColumnName="Code1C" />
+                <ScalarProperty Name="CodeI" ColumnName="CodeI" />
+                <ScalarProperty Name="CodeS" ColumnName="CodeS" />
+                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+                <ScalarProperty Name="QDemand" ColumnName="QDemand" />
+                <ScalarProperty Name="QRest" ColumnName="QRest" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -841,7 +841,6 @@
         <EntityTypeShape EntityType="DriveSqlCeModel.ProfileBankAccount" Width="1.5" PointX="6.75" PointY="6.75" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Sale" Width="1.5" PointX="0.75" PointY="7.75" Height="2.7494921875000031" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.SettingsProfile" Width="1.5" PointX="8.75" PointY="0.75" Height="4.8648079427083317" IsExpanded="true" />
-        <EntityTypeShape EntityType="DriveSqlCeModel.Spare" Width="1.5" PointX="2.75" PointY="8.75" Height="3.5186979166666674" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.SpareAnalogue" Width="1.5" PointX="8.75" PointY="6.75" Height="1.9802864583333388" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.SpareIncome" Width="1.5" PointX="8.75" PointY="9.75" Height="3.3263964843750031" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.SpareOutgo" Width="1.5" PointX="10.75" PointY="0.75" Height="5.0571093750000031" IsExpanded="true" />
@@ -849,6 +848,7 @@
         <EntityTypeShape EntityType="DriveSqlCeModel.Warehouse" Width="1.5" PointX="10.75" PointY="9.75" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Unit" Width="1.5" PointX="5.375" PointY="10.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Brand" Width="1.5" PointX="11.375" PointY="12.75" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.Spare" Width="1.5" PointX="0.75" PointY="11.75" Height="3.5186979166666674" />
       </Diagram>
     </Diagrams>
   </Designer>

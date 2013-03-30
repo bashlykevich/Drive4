@@ -12,6 +12,11 @@ namespace Drive4.Toolkit.Interfaces
 
     public interface DataManager
     {
+        Type EditWindow
+        {
+            get;
+            set;
+        }
         Type EntityType
         {
             get;

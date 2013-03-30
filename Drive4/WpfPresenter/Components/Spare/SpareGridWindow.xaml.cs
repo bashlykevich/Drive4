@@ -10,19 +10,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Drive4.Toolkit.UserControls.DataGrid;
-using Drive4.Core;
 using Drive4.Toolkit.Interfaces;
+using Drive4.Core;
+using Drive4.Toolkit.UserControls.DataGrid;
 
-namespace Drive4.WpfPresenter.Components.Unit
+namespace Drive4.WpfPresenter.Components.Spare
 {
     /// <summary>
-    /// Interaction logic for UnitGridWindow.xaml
+    /// Interaction logic for SpareGridWindow.xaml
     /// </summary>
-    public partial class UnitGridWindow : Window
-    {        
-        DataManager manager = DriveController.Instance.DataConnector.Units;
-        public UnitGridWindow()
+    public partial class SpareGridWindow : Window
+    {
+       DataManager manager = DriveController.Instance.DataConnector.Spares;
+       public SpareGridWindow()
         {            
             InitializeComponent();
             this.Title = manager.Name;

@@ -228,22 +228,6 @@ namespace DatabaseMSSQLCE.ADO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Spare> Spares
-        {
-            get
-            {
-                if ((_Spares == null))
-                {
-                    _Spares = base.CreateObjectSet<Spare>("Spares");
-                }
-                return _Spares;
-            }
-        }
-        private ObjectSet<Spare> _Spares;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<SpareAnalogue> SpareAnalogues
         {
             get
@@ -352,6 +336,22 @@ namespace DatabaseMSSQLCE.ADO
             }
         }
         private ObjectSet<Brand> _Brands;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Spare> Spares
+        {
+            get
+            {
+                if ((_Spares == null))
+                {
+                    _Spares = base.CreateObjectSet<Spare>("Spares");
+                }
+                return _Spares;
+            }
+        }
+        private ObjectSet<Spare> _Spares;
 
         #endregion
 
@@ -438,14 +438,6 @@ namespace DatabaseMSSQLCE.ADO
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Spares EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToSpares(Spare spare)
-        {
-            base.AddObject("Spares", spare);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the SpareAnalogues EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToSpareAnalogues(SpareAnalogue spareAnalogue)
@@ -499,6 +491,14 @@ namespace DatabaseMSSQLCE.ADO
         public void AddToBrands(Brand brand)
         {
             base.AddObject("Brands", brand);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Spares EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSpares(Spare spare)
+        {
+            base.AddObject("Spares", spare);
         }
 
         #endregion
@@ -3036,33 +3036,6 @@ namespace DatabaseMSSQLCE.ADO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 ID
-        {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                if (_ID != value)
-                {
-                    OnIDChanging(value);
-                    ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ID");
-                    OnIDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
-        partial void OnIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public Nullable<global::System.DateTime> ModifiedOn
@@ -3347,6 +3320,33 @@ namespace DatabaseMSSQLCE.ADO
         private global::System.String _QRests;
         partial void OnQRestsChanging(global::System.String value);
         partial void OnQRestsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
 
         #endregion
 

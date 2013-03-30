@@ -21,17 +21,24 @@ namespace Drive4.Toolkit.UserControls.DataGrid
     /// Interaction logic for DataGridPro.xaml
     /// </summary>
     public partial class DataGridPro : UserControl
-    {
-        private Type EditWindowClass;
+    {        
         private DataManager manager;
 
-        public DataGridPro(DataManager _manager, Type _EditWindowClass)
+        public DataGridPro(DataManager _manager)
         {
             InitializeComponent();
-            manager = _manager;
-            EditWindowClass = _EditWindowClass;
+            dgItems.MouseDoubleClick += dgItems_MouseDoubleClick;
+            manager = _manager;            
             foreach (DataGridColumn c in manager.DataColumns)
                 dgItems.Columns.Add(c);         
+        }
+        public DataGridPro(DataManager _manager, MouseButtonEventHandler method)
+        {
+            InitializeComponent();
+            dgItems.MouseDoubleClick += method;
+            manager = _manager;
+            foreach (DataGridColumn c in manager.DataColumns)
+                dgItems.Columns.Add(c);
         }
         void Refresh()
         {            
@@ -39,7 +46,7 @@ namespace Drive4.Toolkit.UserControls.DataGrid
         }
         void Create()
         {
-            Window EditWindow = new EditWindowPro(manager, EditWindowClass);
+            Window EditWindow = new EditWindowPro(manager, manager.EditWindow);
             EditWindow.ShowDialog();
             Refresh();            
         }
@@ -47,7 +54,7 @@ namespace Drive4.Toolkit.UserControls.DataGrid
         {
             if (dgItems.SelectedItem != null)
             {
-                Window EditWindow = new EditWindowPro(manager, EditWindowClass, dgItems.SelectedItem as EntityObject);
+                Window EditWindow = new EditWindowPro(manager, manager.EditWindow, dgItems.SelectedItem as EntityObject);
                 EditWindow.Show();
                 Refresh();
             }

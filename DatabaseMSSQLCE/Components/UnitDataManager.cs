@@ -11,7 +11,7 @@ using DriveBase.Tools;
 namespace Drive4.MsSqlCe.Components
 {
     class UnitDataManager : DataManager
-    {        
+    {
         string name = "Единицы измерения";
         DriveEntities db;
         int NextID
@@ -21,6 +21,7 @@ namespace Drive4.MsSqlCe.Components
                 return db.Units.NextId(x => x.ID);
             }
         }
+
         public UnitDataManager(DriveEntities db)
         {
             this.db = db;
@@ -46,13 +47,14 @@ namespace Drive4.MsSqlCe.Components
         }
 
         public void Delete(int ID)
-        {            
+        {
             Unit u = db.Units.FirstOrDefault(x => x.ID == ID);
             db.DeleteObject(u);
             db.SaveChanges();
         }
 
         public System.Data.Objects.DataClasses.EntityObject Retrieve(int ID)
+            //public System.Data.Objects.DataClasses.EntityObject Retrieve(int ID)
         {
             return (from s in db.Units where s.ID == ID select s) as Unit;
         }
@@ -75,7 +77,7 @@ namespace Drive4.MsSqlCe.Components
                 columns.Add(Helper.GetDataGridTextColumn("ID", "ID", 0.1));
                 columns.Add(Helper.GetDataGridTextColumn("Название", "Name", 0.30));
                 columns.Add(Helper.GetDataGridTextColumn("Описание", "Description", 0.30));
-                columns.Add(Helper.GetDataGridTextColumn("Дата изменения", "ModifiedOn", 0.30));                              
+                columns.Add(Helper.GetDataGridTextColumn("Дата изменения", "ModifiedOn", 0.30));
                 return columns;
             }
         }
@@ -88,6 +90,12 @@ namespace Drive4.MsSqlCe.Components
         public Type EntityType
         {
             get { return typeof(Unit); }
+        }
+
+        public Type EditWindow
+        {
+            get;
+            set;
         }
     }
 }

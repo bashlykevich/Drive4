@@ -20,14 +20,13 @@ namespace Drive4.WpfPresenter.Components.Brand
     /// Interaction logic for BrandGridWindow.xaml
     /// </summary>
     public partial class BrandGridWindow : Window
-    {
-        DataGridPro dg;
+    {        
         DataManager manager = DriveController.Instance.DataConnector.Brands;
         public BrandGridWindow()
         {            
             InitializeComponent();
             this.Title = manager.Name;
-            grMain.Children.Add(dg = new DataGridPro(manager, typeof(BrandEditWindow)));
+            grMain.Children.Add(new DataGridPro(manager));
         }
     }
 }

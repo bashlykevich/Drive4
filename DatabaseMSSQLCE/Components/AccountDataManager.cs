@@ -59,5 +59,11 @@ namespace Drive4.MsSqlCe.Components
         {
             get { throw new NotImplementedException(); }
         }
+
+        public Type EditWindow
+        {
+            get;
+            set;
+        }
     }
 }

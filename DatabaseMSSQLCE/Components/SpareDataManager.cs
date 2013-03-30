@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Drive4.Toolkit.Interfaces;
 using DatabaseMSSQLCE.ADO;
+using System.Windows.Controls;
+using DriveBase.Tools;
 
 namespace Drive4.MsSqlCe.Components
 {
@@ -14,29 +16,51 @@ namespace Drive4.MsSqlCe.Components
         {
             this.db = db;
         }
+              string name = "Запчасти";       
+        int NextID
+        {
+            get
+            {
+                return db.Spares.NextId(x => x.ID);
+            }
+        }
+     
+
         public void Create(System.Data.Objects.DataClasses.EntityObject DataItemToCreate)
         {
-            throw new NotImplementedException();
+            Spare u = DataItemToCreate as Spare;
+            u.ID = this.NextID;
+            u.ModifiedOn = DateTime.Now;
+            db.AddToSpares(u);
+            db.SaveChanges();
         }
 
         public void Update(System.Data.Objects.DataClasses.EntityObject DataItemToUpdate)
         {
-            throw new NotImplementedException();
+            Spare upd = DataItemToUpdate as Spare;
+            Spare u = db.Spares.FirstOrDefault(x => x.ID == upd.ID);
+            u = upd;
+            //u.Name = upd.Name;
+            u.ModifiedOn = DateTime.Now;
+            //u.Description = upd.Description;
+            db.SaveChanges();
         }
 
         public void Delete(int ID)
         {
-            throw new NotImplementedException();
+            Spare u = db.Spares.FirstOrDefault(x => x.ID == ID);
+            db.DeleteObject(u);
+            db.SaveChanges();
         }
 
         public System.Data.Objects.DataClasses.EntityObject Retrieve(int ID)
         {
-            throw new NotImplementedException();
+            return (from s in db.Spares where s.ID == ID select s) as Spare;
         }
 
         public IEnumerable<System.Data.Objects.DataClasses.EntityObject> Retrieve()
         {
-            throw new NotImplementedException();
+            return from s in db.Spares select s;
         }
 
         public IEnumerable<System.Data.Objects.DataClasses.EntityObject> Retrieve(Dictionary<string, string> SQLFilterParameters)
@@ -46,17 +70,31 @@ namespace Drive4.MsSqlCe.Components
 
         public System.Collections.IEnumerable DataColumns
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                List<DataGridColumn> columns = new List<DataGridColumn>();
+                columns.Add(Helper.GetDataGridTextColumn("ID", "ID", 0.1));
+                columns.Add(Helper.GetDataGridTextColumn("Название", "Name", 0.30));
+                columns.Add(Helper.GetDataGridTextColumn("Описание", "Description", 0.30));
+                columns.Add(Helper.GetDataGridTextColumn("Дата изменения", "ModifiedOn", 0.30));
+                return columns;
+            }
         }
 
         public string Name
         {
-            get { throw new NotImplementedException(); }
+            get { return name; }
         }
 
         public Type EntityType
         {
-            get { throw new NotImplementedException(); }
+            get { return typeof(Spare); }
+        }
+
+        public Type EditWindow
+        {
+            get;
+            set;
         }
     }
 }

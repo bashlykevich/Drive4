@@ -16,7 +16,11 @@ namespace Drive4.MsSqlCe.Components
         {
             this.db = db;
         }
-        
+        public Type EditWindow
+        {
+            get;
+            set;
+        }
         string name = "Банки";       
         int NextID
         {

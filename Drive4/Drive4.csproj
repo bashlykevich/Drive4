@@ -82,6 +82,12 @@
     <Compile Include="WpfPresenter\Components\Brand\BrandGridWindow.xaml.cs">
       <DependentUpon>BrandGridWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WpfPresenter\Components\Spare\SpareEditWindow.xaml.cs">
+      <DependentUpon>SpareEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WpfPresenter\Components\Spare\SpareGridWindow.xaml.cs">
+      <DependentUpon>SpareGridWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WpfPresenter\Components\Unit\UnitEditWindow.xaml.cs">
       <DependentUpon>UnitEditWindow.xaml</DependentUpon>
     </Compile>
@@ -93,6 +99,12 @@
     </Compile>
     <Compile Include="WpfPresenter\UserControls\EditWindow\EditWindowPro.xaml.cs">
       <DependentUpon>EditWindowPro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WpfPresenter\UserControls\LookupDataControl\LookupDataControl.xaml.cs">
+      <DependentUpon>LookupDataControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WpfPresenter\UserControls\LookupDataControl\SelectWindow.xaml.cs">
+      <DependentUpon>SelectWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -114,6 +126,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="WpfPresenter\Components\Spare\SpareEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WpfPresenter\Components\Spare\SpareGridWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WpfPresenter\Components\Unit\UnitEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,6 +149,14 @@
     <Page Include="WpfPresenter\UserControls\EditWindow\EditWindowPro.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WpfPresenter\UserControls\LookupDataControl\LookupDataControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WpfPresenter\UserControls\LookupDataControl\SelectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

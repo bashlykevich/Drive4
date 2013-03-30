@@ -33,7 +33,11 @@ namespace Drive4.MsSqlCe.Components
             db.AddToBrands(u);
             db.SaveChanges();
         }
-
+        public Type EditWindow
+        {
+            get;
+            set;
+        }
         public void Update(System.Data.Objects.DataClasses.EntityObject DataItemToUpdate)
         {
             Brand upd = DataItemToUpdate as Brand;

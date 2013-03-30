@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Drive4.Toolkit.Interfaces;
+using Drive4.WpfPresenter.Components.Unit;
+using Drive4.WpfPresenter.Components.Brand;
+using Drive4.WpfPresenter.Components.Spare;
 
 namespace Drive4.Core
 {
@@ -14,8 +17,14 @@ namespace Drive4.Core
         private DriveController()
         {
             DataConnector = new DatabaseMSSQLCE.MsSqlCeAdoConnector();
+            SetEditWindows();
         }
-
+        void SetEditWindows()
+        {
+            DataConnector.Units.EditWindow = typeof(UnitEditWindow);
+            DataConnector.Brands.EditWindow = typeof(BrandEditWindow);
+            DataConnector.Spares.EditWindow = typeof(SpareEditWindow);
+        }
         public static DriveController Instance
         {
             get

@@ -14,6 +14,7 @@ namespace DatabaseMSSQLCE
 
         DataManager units;
         DataManager brands;
+        DataManager spares;
 
         public MsSqlCeAdoConnector()
         {
@@ -21,12 +22,13 @@ namespace DatabaseMSSQLCE
 
             units = new UnitDataManager(db);
             brands = new BrandDataManager(db);
+            spares = new SpareDataManager(db);
         }
         public DataManager Spares
         {
             get 
             {
-                return new SpareDataManager(db);
+                return spares;
             }
         }
         
