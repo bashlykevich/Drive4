@@ -15,6 +15,7 @@ namespace DatabaseMSSQLCE
         DataManager units;
         DataManager brands;
         DataManager spares;
+        DataManager groups;
 
         public MsSqlCeAdoConnector()
         {
@@ -23,6 +24,7 @@ namespace DatabaseMSSQLCE
             units = new UnitDataManager(db);
             brands = new BrandDataManager(db);
             spares = new SpareDataManager(db);
+            groups = new SpareGroupDataManager(db);
         }
         public DataManager Spares
         {
@@ -46,7 +48,9 @@ namespace DatabaseMSSQLCE
 
         public DataManager SpareGroups
         {
-            get { throw new NotImplementedException(); }
+            get {
+                return groups;
+            }
         }
 
         public DataManager VatRates

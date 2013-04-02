@@ -23,9 +23,10 @@ namespace Drive4.WpfPresenter.Components.Spare
     {
         public SpareEditWindow()
         {
-            InitializeComponent();
-            LookupDataControl ld = new LookupDataControl(0, DriveController.Instance.DataConnector.Units);
-            grUnit.Children.Add(ld);
+            InitializeComponent();                        
+            ldUnit.SourceDataManager = DriveController.Instance.DataConnector.Units;
+            ldBrand.SourceDataManager = DriveController.Instance.DataConnector.Brands;
+            ldGroup.SourceDataManager = DriveController.Instance.DataConnector.SpareGroups;
         }
     }
 }

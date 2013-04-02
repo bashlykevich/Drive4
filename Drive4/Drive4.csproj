@@ -82,6 +82,12 @@
     <Compile Include="WpfPresenter\Components\Brand\BrandGridWindow.xaml.cs">
       <DependentUpon>BrandGridWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WpfPresenter\Components\SpareGroup\SpareGroupEditWindow.xaml.cs">
+      <DependentUpon>SpareGroupEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WpfPresenter\Components\SpareGroup\SpareGroupGridWindow.xaml.cs">
+      <DependentUpon>SpareGroupGridWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WpfPresenter\Components\Spare\SpareEditWindow.xaml.cs">
       <DependentUpon>SpareEditWindow.xaml</DependentUpon>
     </Compile>
@@ -125,6 +131,14 @@
     <Page Include="WpfPresenter\Components\Brand\BrandGridWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WpfPresenter\Components\SpareGroup\SpareGroupEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WpfPresenter\Components\SpareGroup\SpareGroupGridWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WpfPresenter\Components\Spare\SpareEditWindow.xaml">
       <SubType>Designer</SubType>

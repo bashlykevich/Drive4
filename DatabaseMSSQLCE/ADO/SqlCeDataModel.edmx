@@ -19,6 +19,7 @@
           <EntitySet Name="SettingsProfile" EntityType="DriveSqlCeModel.Store.SettingsProfile" store:Type="Tables" />
           <EntitySet Name="Spare" EntityType="DriveSqlCeModel.Store.Spare" store:Type="Tables" />
           <EntitySet Name="SpareAnalogue" EntityType="DriveSqlCeModel.Store.SpareAnalogue" store:Type="Tables" />
+          <EntitySet Name="SpareGroup" EntityType="DriveSqlCeModel.Store.SpareGroup" store:Type="Tables" />
           <EntitySet Name="SpareIncome" EntityType="DriveSqlCeModel.Store.SpareIncome" store:Type="Tables" />
           <EntitySet Name="SpareOutgo" EntityType="DriveSqlCeModel.Store.SpareOutgo" store:Type="Tables" />
           <EntitySet Name="Unit" EntityType="DriveSqlCeModel.Store.Unit" store:Type="Tables" />
@@ -197,6 +198,17 @@
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
           <Property Name="ModifiedOn" Type="datetime" />
         </EntityType>
+        <EntityType Name="SpareGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="ParentGroupID" Type="int" />
+          <Property Name="Code1C" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="SpareIncome">
           <Key>
             <PropertyRef Name="ID" />
@@ -267,17 +279,6 @@
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
         </EntityType>
-        <!--Errors Found During Generation:
-            warning 6013: The table/view 'SpareGroup' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-            
-            <EntityType Name="SpareGroup">
-              <Property Name="ID" Type="nvarchar" MaxLength="100" />
-              <Property Name="ModifiedOn" Type="nvarchar" MaxLength="100" />
-              <Property Name="Name" Type="nvarchar" MaxLength="100" />
-              <Property Name="Description" Type="nvarchar" MaxLength="100" />
-              <Property Name="ParentGroupID" Type="nvarchar" MaxLength="100" />
-              <Property Name="Code1C" Type="nvarchar" MaxLength="100" />
-            </EntityType>-->
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -301,6 +302,7 @@
           <EntitySet Name="Units" EntityType="DriveSqlCeModel.Unit" />
           <EntitySet Name="Brands" EntityType="DriveSqlCeModel.Brand" />
           <EntitySet Name="Spares" EntityType="DriveSqlCeModel.Spare" />
+          <EntitySet Name="SpareGroups" EntityType="DriveSqlCeModel.SpareGroup" />
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -543,6 +545,17 @@
           <Property Type="String" Name="Code1C" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="QRests" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="ID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpareGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedOn" />
+          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ParentGroupID" />
+          <Property Type="String" Name="Code1C" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -810,6 +823,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SpareGroups">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.SpareGroup">
+              <MappingFragment StoreEntitySet="SpareGroup">
+                <ScalarProperty Name="Code1C" ColumnName="Code1C" />
+                <ScalarProperty Name="ParentGroupID" ColumnName="ParentGroupID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -849,6 +874,7 @@
         <EntityTypeShape EntityType="DriveSqlCeModel.Unit" Width="1.5" PointX="5.375" PointY="10.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Brand" Width="1.5" PointX="11.375" PointY="12.75" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Spare" Width="1.5" PointX="0.75" PointY="11.75" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.SpareGroup" Width="1.5" PointX="13.375" PointY="0.75" Height="2.1725878906250031" />
       </Diagram>
     </Diagrams>
   </Designer>

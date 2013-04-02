@@ -352,6 +352,22 @@ namespace DatabaseMSSQLCE.ADO
             }
         }
         private ObjectSet<Spare> _Spares;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SpareGroup> SpareGroups
+        {
+            get
+            {
+                if ((_SpareGroups == null))
+                {
+                    _SpareGroups = base.CreateObjectSet<SpareGroup>("SpareGroups");
+                }
+                return _SpareGroups;
+            }
+        }
+        private ObjectSet<SpareGroup> _SpareGroups;
 
         #endregion
 
@@ -499,6 +515,14 @@ namespace DatabaseMSSQLCE.ADO
         public void AddToSpares(Spare spare)
         {
             base.AddObject("Spares", spare);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SpareGroups EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSpareGroups(SpareGroup spareGroup)
+        {
+            base.AddObject("SpareGroups", spareGroup);
         }
 
         #endregion
@@ -3500,6 +3524,183 @@ namespace DatabaseMSSQLCE.ADO
         private Nullable<global::System.DateTime> _ModifiedOn;
         partial void OnModifiedOnChanging(Nullable<global::System.DateTime> value);
         partial void OnModifiedOnChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DriveSqlCeModel", Name="SpareGroup")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SpareGroup : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SpareGroup object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static SpareGroup CreateSpareGroup(global::System.Int32 id)
+        {
+            SpareGroup spareGroup = new SpareGroup();
+            spareGroup.ID = id;
+            return spareGroup;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ModifiedOn
+        {
+            get
+            {
+                return _ModifiedOn;
+            }
+            set
+            {
+                OnModifiedOnChanging(value);
+                ReportPropertyChanging("ModifiedOn");
+                _ModifiedOn = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ModifiedOn");
+                OnModifiedOnChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ModifiedOn;
+        partial void OnModifiedOnChanging(Nullable<global::System.DateTime> value);
+        partial void OnModifiedOnChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ParentGroupID
+        {
+            get
+            {
+                return _ParentGroupID;
+            }
+            set
+            {
+                OnParentGroupIDChanging(value);
+                ReportPropertyChanging("ParentGroupID");
+                _ParentGroupID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ParentGroupID");
+                OnParentGroupIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ParentGroupID;
+        partial void OnParentGroupIDChanging(Nullable<global::System.Int32> value);
+        partial void OnParentGroupIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Code1C
+        {
+            get
+            {
+                return _Code1C;
+            }
+            set
+            {
+                OnCode1CChanging(value);
+                ReportPropertyChanging("Code1C");
+                _Code1C = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Code1C");
+                OnCode1CChanged();
+            }
+        }
+        private global::System.String _Code1C;
+        partial void OnCode1CChanging(global::System.String value);
+        partial void OnCode1CChanged();
 
         #endregion
 

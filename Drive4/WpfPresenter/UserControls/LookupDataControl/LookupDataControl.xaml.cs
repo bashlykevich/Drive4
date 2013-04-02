@@ -45,13 +45,27 @@ namespace Drive4.WpfPresenter.UserControls.LookupDataControl
                 this.SetValue(SourceDataManagerProperty, value);
             }
         }
-        
-        public LookupDataControl()
+        /*
+        public string Name
+        {
+            get
+            {
+                return base.Name;
+            }
+            set
+            {
+                base.Name = value;
+            }
+        }*/
+        /*public LookupDataControl()
         {
             InitializeComponent();
             SetDisplayNameBinding();
+        }*/
+        public LookupDataControl()
+        {
+            InitializeComponent();
         }
-
         public LookupDataControl(int RecordID, DataManager SourceDataManager)
         {
             InitializeComponent();

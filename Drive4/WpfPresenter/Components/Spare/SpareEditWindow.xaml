@@ -4,25 +4,150 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
              xmlns:local="clr-namespace:Drive4.WpfPresenter.UserControls.LookupDataControl"             
+             xmlns:core="clr-namespace:Drive4.Core"
              VerticalAlignment="Stretch"
              HorizontalAlignment="Stretch"             
              Width="300"
              mc:Ignorable="d">
     <Grid>
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <!-- Названия полей -->
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="0"
+                Text="CodeI"                
+                Margin="2"
+                HorizontalAlignment="Stretch"/>
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="1"
+                Text="CodeS"                
+                Margin="2"
+                HorizontalAlignment="Stretch"/>
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="2"
+                Text="Name"                
+                Margin="2"
+                HorizontalAlignment="Stretch"/>
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="3"
+                Text="Description"                
+                Margin="2"
+                HorizontalAlignment="Stretch"/>
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="4"
+                Text="Unit"                
+                Margin="2"
+                HorizontalAlignment="Stretch"/>
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="5"
+                Text="Brand"                
+                Margin="2"
+                HorizontalAlignment="Stretch"/>
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="6"
+                Text="Group"                
+                Margin="2"
+                HorizontalAlignment="Stretch"/>
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="7"
+                Text="QRest"                
+                Margin="2"
+                HorizontalAlignment="Stretch"/>
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="8"
+                Text="QDemand"                
+                Margin="2"
+                HorizontalAlignment="Stretch"/>
+
+        <!-- ПОЛЯ -->
+            <TextBox                
+                Grid.Column="1"
+                Grid.Row="0"
+                Name="edtCodeI"
+                Text="{Binding Path=CodeI, Mode=TwoWay}"
+                Margin="2"
+                HorizontalAlignment="Stretch"/>
+            <TextBox       
+                Grid.Column="1"
+                Grid.Row="1"
+                Name="edtCodeS"
+                Text="{Binding Path=CodeS, Mode=TwoWay}"
+                Margin="2"
+                HorizontalAlignment="Stretch"/>
             <TextBox
+                Grid.Column="1"
+                Grid.Row="2"
                 Name="edtName"
                 Text="{Binding Path=Name, Mode=TwoWay}"
                 Margin="2"
                 HorizontalAlignment="Stretch"/>
-            <TextBox 
+            <TextBox       
+                Grid.Column="1"
+                Grid.Row="3"
                 Name="edtDescription"
                 Text="{Binding Path=Description, Mode=TwoWay}"
                 Margin="2"
                 HorizontalAlignment="Stretch"/>
-            <Grid Name="grUnit" 
-                  HorizontalAlignment="Stretch">                
+            <Grid Name="grUnit"                   
+                  Grid.Column="1"
+                Grid.Row="4"
+                  HorizontalAlignment="Stretch">
+                <local:LookupDataControl 
+                    x:Name="ldUnit"
+                    RecordID="{Binding Path=UnitID}"/>
             </Grid>
-        </StackPanel>
+            <Grid Name="grBrand"                   
+                  Grid.Column="1"
+                Grid.Row="5"
+                  HorizontalAlignment="Stretch">
+                <local:LookupDataControl 
+                    x:Name="ldBrand"
+                    RecordID="{Binding Path=BrandID}"/>
+            </Grid>
+            <Grid Name="grGroup"                   
+                  Grid.Column="1"
+                Grid.Row="6"
+                  HorizontalAlignment="Stretch">
+                <local:LookupDataControl 
+                    x:Name="ldGroup"
+                    RecordID="{Binding Path=GroupID}"/>
+            </Grid>
+            <TextBox       
+                Grid.Column="1"
+                Grid.Row="7"
+                Name="edtQRest"
+                Text="{Binding Path=QRest, Mode=TwoWay}"
+                Margin="2"
+                HorizontalAlignment="Stretch"/>
+            <TextBox       
+                Grid.Column="1"
+                Grid.Row="8"
+                Name="edtQDemand"
+                Text="{Binding Path=QDemand, Mode=TwoWay}"
+                Margin="2"
+                HorizontalAlignment="Stretch"/>        
     </Grid>
 </UserControl>

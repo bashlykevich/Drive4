@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Drive4.Toolkit.Interfaces;
 using DatabaseMSSQLCE.ADO;
+using System.Windows.Controls;
+using DriveBase.Tools;
 
 namespace Drive4.MsSqlCe.Components
 {
@@ -21,29 +23,39 @@ namespace Drive4.MsSqlCe.Components
         }
         public void Create(System.Data.Objects.DataClasses.EntityObject DataItemToCreate)
         {
-            throw new NotImplementedException();
+            SpareGroup u = DataItemToCreate as SpareGroup;
+            u.ID = this.NextID;
+            db.AddToSpareGroups(u);
+            db.SaveChanges();
         }
 
         public void Update(System.Data.Objects.DataClasses.EntityObject DataItemToUpdate)
         {
-            throw new NotImplementedException();
+            SpareGroup upd = DataItemToUpdate as SpareGroup;
+            SpareGroup u = db.SpareGroups.FirstOrDefault(x => x.ID == upd.ID);
+            u.Name = upd.Name;
+            u.ModifiedOn = upd.ModifiedOn;
+            u.Description = upd.Description;
+            db.SaveChanges();
         }
 
         public void Delete(int ID)
         {
-            throw new NotImplementedException();
+            SpareGroup u = db.SpareGroups.FirstOrDefault(x => x.ID == ID);
+            db.DeleteObject(u);
+            db.SaveChanges();
         }
 
         public System.Data.Objects.DataClasses.EntityObject Retrieve(int ID)
         {
-            throw new NotImplementedException();
+            return (from s in db.SpareGroups where s.ID == ID select s) as SpareGroup;
         }
 
         public IEnumerable<System.Data.Objects.DataClasses.EntityObject> Retrieve()
         {
-            throw new NotImplementedException();
+            return from s in db.SpareGroups select s;
         }
-
+        
         public IEnumerable<System.Data.Objects.DataClasses.EntityObject> Retrieve(Dictionary<string, string> SQLFilterParameters)
         {
             throw new NotImplementedException();
@@ -51,17 +63,34 @@ namespace Drive4.MsSqlCe.Components
 
         public System.Collections.IEnumerable DataColumns
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                List<DataGridColumn> columns = new List<DataGridColumn>();
+                columns.Add(Helper.GetDataGridTextColumn("ID", "ID", 0.1));
+                columns.Add(Helper.GetDataGridTextColumn("Название", "Name", 0.30));
+                columns.Add(Helper.GetDataGridTextColumn("Описание", "Description", 0.30));
+                columns.Add(Helper.GetDataGridTextColumn("Дата изменения", "ModifiedOn", 0.30));
+                return columns;
+            }
         }
 
+        string name = "Группы";
         public string Name
         {
-            get { throw new NotImplementedException(); }
+            get { return name; }
         }
 
         public Type EntityType
         {
-            get { throw new NotImplementedException(); }
+            get { return typeof(SpareGroup); }
         }
+        int NextID
+        {
+            get
+            {
+                return db.SpareGroups.NextId(x => x.ID);
+            }
+        }
+
     }
 }
