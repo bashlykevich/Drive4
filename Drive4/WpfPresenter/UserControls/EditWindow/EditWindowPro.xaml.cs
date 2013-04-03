@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Drive4.Toolkit.Interfaces;
 using System.Data.Objects.DataClasses;
+using Drive4.WpfPresenter.Components.Spare;
 
 namespace Drive4.Toolkit.UserControls.EditWindow
 {
@@ -22,35 +23,39 @@ namespace Drive4.Toolkit.UserControls.EditWindow
     {
         DataManager manager;
         bool IsNewEntity = false;
-        UserControl FormContent;
-        
+        UserControl FormContent;    
+
         public EditWindowPro(DataManager _manager, Type EditWindowClass)
-        {
+        {            
             InitializeComponent();
             manager = _manager;
             IsNewEntity = true;
-            FormContent = (UserControl)Activator.CreateInstance(EditWindowClass);
-            FormContent.DataContext = Activator.CreateInstance(manager.EntityType);
+            FormContent = (UserControl)Activator.CreateInstance(EditWindowClass);            
             grContent.Children.Add(FormContent);
             this.Title = manager.Name;
+            FillFormContent();
         }
         public EditWindowPro(DataManager _manager, Type EditWindowClass,EntityObject item)
-        {
+        {            
             InitializeComponent();
-            manager = _manager;
+             manager = _manager;
             IsNewEntity = false;
-            FormContent = (UserControl)Activator.CreateInstance(EditWindowClass);
+            FormContent = (UserControl)Activator.CreateInstance(EditWindowClass);                        
             grContent.Children.Add(FormContent);
             this.Title = manager.Name;
-            this.FillFormContent(item);
+            FillFormContent(item);
         }
-        void FillFormContent(EntityObject obj)
+        private void FillFormContent()
         {
-            FormContent.DataContext = obj;            
+            this.DataContext = Activator.CreateInstance(manager.EntityType);
+        }
+        private void FillFormContent(EntityObject item)
+        {
+            this.DataContext = item;
         }
         private EntityObject GetItemFromForm()
         {
-            return FormContent.DataContext as EntityObject;
+            return this.DataContext as EntityObject;
         }
         private void Post()
         {
@@ -80,6 +85,11 @@ namespace Drive4.Toolkit.UserControls.EditWindow
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             CloseWithoutSaving();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

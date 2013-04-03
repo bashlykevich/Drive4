@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStartupLocation="CenterScreen"     
         SizeToContent="WidthAndHeight"
-        ResizeMode="NoResize"                
+        ResizeMode="NoResize"            
+        Loaded="Window_Loaded"
         WindowStyle="SingleBorderWindow"
         Title="WindowName">
     <Grid>

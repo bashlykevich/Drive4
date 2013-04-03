@@ -9,18 +9,18 @@
     <Grid>   
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="25" />
+            <ColumnDefinition Width="25" />            
         </Grid.ColumnDefinitions>
         <TextBox 
-            Name="edtRecordName"
+            Name="edtRecordName"                       
+            Text="{Binding Mode=OneWay, Path=Name}"
             Grid.Column="0"
-            IsEnabled="False"
-            Text="{Binding Path=Name}"
+            IsEnabled="False"            
             Margin="2"/>
         <Button             
             Grid.Column="1"
             Name="btnSelect"
             Click="btnSelect_Click"
-            Margin="2"/>
+            Margin="2"/>      
     </Grid>
 </UserControl>

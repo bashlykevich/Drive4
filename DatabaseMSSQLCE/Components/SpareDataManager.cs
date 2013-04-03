@@ -6,6 +6,7 @@ using Drive4.Toolkit.Interfaces;
 using DatabaseMSSQLCE.ADO;
 using System.Windows.Controls;
 using DriveBase.Tools;
+using System.Diagnostics;
 
 namespace Drive4.MsSqlCe.Components
 {
@@ -29,6 +30,7 @@ namespace Drive4.MsSqlCe.Components
         public void Create(System.Data.Objects.DataClasses.EntityObject DataItemToCreate)
         {
             Spare u = DataItemToCreate as Spare;
+            Debug.Assert(u.UnitID != null);
             u.ID = this.NextID;
             u.ModifiedOn = DateTime.Now;
             db.AddToSpares(u);
@@ -38,11 +40,10 @@ namespace Drive4.MsSqlCe.Components
         public void Update(System.Data.Objects.DataClasses.EntityObject DataItemToUpdate)
         {
             Spare upd = DataItemToUpdate as Spare;
-            Spare u = db.Spares.FirstOrDefault(x => x.ID == upd.ID);
+            Debug.Assert(upd.UnitID != null);
+            Spare u = db.Spares.FirstOrDefault(x => x.ID == upd.ID);            
             u = upd;
-            //u.Name = upd.Name;
             u.ModifiedOn = DateTime.Now;
-            //u.Description = upd.Description;
             db.SaveChanges();
         }
 
@@ -55,7 +56,8 @@ namespace Drive4.MsSqlCe.Components
 
         public System.Data.Objects.DataClasses.EntityObject Retrieve(int ID)
         {
-            return (from s in db.Spares where s.ID == ID select s) as Spare;
+            Spare i = db.Spares.FirstOrDefault(x => x.ID == ID);
+            return i;
         }
 
         public IEnumerable<System.Data.Objects.DataClasses.EntityObject> Retrieve()
@@ -74,9 +76,12 @@ namespace Drive4.MsSqlCe.Components
             {
                 List<DataGridColumn> columns = new List<DataGridColumn>();
                 columns.Add(Helper.GetDataGridTextColumn("ID", "ID", 0.1));
-                columns.Add(Helper.GetDataGridTextColumn("Название", "Name", 0.30));
-                columns.Add(Helper.GetDataGridTextColumn("Описание", "Description", 0.30));
-                columns.Add(Helper.GetDataGridTextColumn("Дата изменения", "ModifiedOn", 0.30));
+                columns.Add(Helper.GetDataGridTextColumn("Название", "Name", 0.20));
+                columns.Add(Helper.GetDataGridTextColumn("Описание", "Description", 0.20));
+                columns.Add(Helper.GetDataGridTextColumn("Дата изменения", "ModifiedOn", 0.20));
+                columns.Add(Helper.GetDataGridTextColumn("UnitID", "UnitID", 0.10));
+                columns.Add(Helper.GetDataGridTextColumn("BrandID", "BrandID", 0.10));
+                columns.Add(Helper.GetDataGridTextColumn("GroupID", "GroupID", 0.10));
                 return columns;
             }
         }

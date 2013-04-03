@@ -53,10 +53,10 @@ namespace Drive4.MsSqlCe.Components
             db.SaveChanges();
         }
 
-        public System.Data.Objects.DataClasses.EntityObject Retrieve(int ID)
-            //public System.Data.Objects.DataClasses.EntityObject Retrieve(int ID)
-        {
-            return (from s in db.Units where s.ID == ID select s) as Unit;
+        public System.Data.Objects.DataClasses.EntityObject Retrieve(int ID)           
+        {            
+            Unit i = db.Units.FirstOrDefault(x => x.ID == ID);
+            return i;
         }
 
         public IEnumerable<System.Data.Objects.DataClasses.EntityObject> Retrieve()

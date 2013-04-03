@@ -48,7 +48,8 @@ namespace Drive4.MsSqlCe.Components
 
         public System.Data.Objects.DataClasses.EntityObject Retrieve(int ID)
         {
-            return (from s in db.SpareGroups where s.ID == ID select s) as SpareGroup;
+            SpareGroup i = db.SpareGroups.FirstOrDefault(x => x.ID == ID);
+            return i;
         }
 
         public IEnumerable<System.Data.Objects.DataClasses.EntityObject> Retrieve()

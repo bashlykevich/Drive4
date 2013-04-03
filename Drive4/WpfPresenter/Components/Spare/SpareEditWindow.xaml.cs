@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Drive4.WpfPresenter.UserControls.LookupDataControl;
 using Drive4.Core;
+using System.Data.Objects.DataClasses;
 
 namespace Drive4.WpfPresenter.Components.Spare
 {
@@ -23,10 +24,15 @@ namespace Drive4.WpfPresenter.Components.Spare
     {
         public SpareEditWindow()
         {
-            InitializeComponent();                        
-            ldUnit.SourceDataManager = DriveController.Instance.DataConnector.Units;
-            ldBrand.SourceDataManager = DriveController.Instance.DataConnector.Brands;
-            ldGroup.SourceDataManager = DriveController.Instance.DataConnector.SpareGroups;
-        }
+            InitializeComponent();                                                            
+        }   
+      
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ldUnit.InitLookupData(DriveController.Instance.DataConnector.Units, "UnitID");
+            ldBrand.InitLookupData(DriveController.Instance.DataConnector.Brands, "BrandID");
+            ldGroup.InitLookupData(DriveController.Instance.DataConnector.SpareGroups, "GroupID");           
+        }        
+
     }
 }

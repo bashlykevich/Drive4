@@ -8,6 +8,7 @@
              VerticalAlignment="Stretch"
              HorizontalAlignment="Stretch"             
              Width="300"
+             Loaded="UserControl_Loaded"
              mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -50,13 +51,13 @@
                 Grid.Row="3"
                 Text="Description"                
                 Margin="2"
-                HorizontalAlignment="Stretch"/>
-            <TextBlock
+                HorizontalAlignment="Stretch"/>            
+                <TextBlock
                 Grid.Column="0"
                 Grid.Row="4"
                 Text="Unit"                
                 Margin="2"
-                HorizontalAlignment="Stretch"/>
+                HorizontalAlignment="Stretch"/>        
             <TextBlock
                 Grid.Column="0"
                 Grid.Row="5"
@@ -113,28 +114,28 @@
                 HorizontalAlignment="Stretch"/>
             <Grid Name="grUnit"                   
                   Grid.Column="1"
-                Grid.Row="4"
+                  Grid.Row="4"
                   HorizontalAlignment="Stretch">
-                <local:LookupDataControl 
-                    x:Name="ldUnit"
-                    RecordID="{Binding Path=UnitID}"/>
+                <local:LookupDataControl
+                    RecordID="{Binding Path=UnitID, Mode=TwoWay}"
+                    x:Name="ldUnit"/>
             </Grid>
             <Grid Name="grBrand"                   
                   Grid.Column="1"
                 Grid.Row="5"
                   HorizontalAlignment="Stretch">
-                <local:LookupDataControl 
-                    x:Name="ldBrand"
-                    RecordID="{Binding Path=BrandID}"/>
+            <local:LookupDataControl
+                    RecordID="{Binding Path=BrandID, Mode=TwoWay}"
+                    x:Name="ldBrand"/>
             </Grid>
             <Grid Name="grGroup"                   
                   Grid.Column="1"
                 Grid.Row="6"
                   HorizontalAlignment="Stretch">
-                <local:LookupDataControl 
-                    x:Name="ldGroup"
-                    RecordID="{Binding Path=GroupID}"/>
-            </Grid>
+            <local:LookupDataControl
+                    RecordID="{Binding Path=GroupID, Mode=TwoWay}"
+                    x:Name="ldGroup"/>
+        </Grid>
             <TextBox       
                 Grid.Column="1"
                 Grid.Row="7"

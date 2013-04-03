@@ -55,5 +55,10 @@ namespace Drive4
         {
             GoToDictionarySpare();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            GoToDictionarySpare();
+        }
     }
 }
