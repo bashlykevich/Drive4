@@ -25,6 +25,22 @@
           <EntitySet Name="Unit" EntityType="DriveSqlCeModel.Store.Unit" store:Type="Tables" />
           <EntitySet Name="VatRate" EntityType="DriveSqlCeModel.Store.VatRate" store:Type="Tables" />
           <EntitySet Name="Warehouse" EntityType="DriveSqlCeModel.Store.Warehouse" store:Type="Tables" />
+          <AssociationSet Name="FK_ParentSpareGroup" Association="DriveSqlCeModel.Store.FK_ParentSpareGroup">
+            <End Role="SpareGroup" EntitySet="SpareGroup" />
+            <End Role="SpareGroup1" EntitySet="SpareGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spare_Brand" Association="DriveSqlCeModel.Store.FK_Spare_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Spare" EntitySet="Spare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spare_Group" Association="DriveSqlCeModel.Store.FK_Spare_Group">
+            <End Role="SpareGroup" EntitySet="SpareGroup" />
+            <End Role="Spare" EntitySet="Spare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spare_Unit" Association="DriveSqlCeModel.Store.FK_Spare_Unit">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Spare" EntitySet="Spare" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -279,6 +295,54 @@
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
         </EntityType>
+        <Association Name="FK_ParentSpareGroup">
+          <End Role="SpareGroup" Type="DriveSqlCeModel.Store.SpareGroup" Multiplicity="0..1" />
+          <End Role="SpareGroup1" Type="DriveSqlCeModel.Store.SpareGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpareGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SpareGroup1">
+              <PropertyRef Name="ParentGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spare_Brand">
+          <End Role="Brand" Type="DriveSqlCeModel.Store.Brand" Multiplicity="0..1" />
+          <End Role="Spare" Type="DriveSqlCeModel.Store.Spare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Spare">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spare_Group">
+          <End Role="SpareGroup" Type="DriveSqlCeModel.Store.SpareGroup" Multiplicity="0..1" />
+          <End Role="Spare" Type="DriveSqlCeModel.Store.Spare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpareGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Spare">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spare_Unit">
+          <End Role="Unit" Type="DriveSqlCeModel.Store.Unit" Multiplicity="0..1" />
+          <End Role="Spare" Type="DriveSqlCeModel.Store.Spare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Spare">
+              <PropertyRef Name="UnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -299,10 +363,26 @@
           <EntitySet Name="SpareOutgoes" EntityType="DriveSqlCeModel.SpareOutgo" />
           <EntitySet Name="VatRates" EntityType="DriveSqlCeModel.VatRate" />
           <EntitySet Name="Warehouses" EntityType="DriveSqlCeModel.Warehouse" />
-          <EntitySet Name="Units" EntityType="DriveSqlCeModel.Unit" />
+          <EntitySet Name="SpareGroups" EntityType="DriveSqlCeModel.SpareGroup" />
+          <AssociationSet Name="FK_ParentSpareGroup" Association="DriveSqlCeModel.FK_ParentSpareGroup">
+            <End Role="SpareGroup" EntitySet="SpareGroups" />
+            <End Role="SpareGroup1" EntitySet="SpareGroups" />
+          </AssociationSet>
           <EntitySet Name="Brands" EntityType="DriveSqlCeModel.Brand" />
           <EntitySet Name="Spares" EntityType="DriveSqlCeModel.Spare" />
-          <EntitySet Name="SpareGroups" EntityType="DriveSqlCeModel.SpareGroup" />
+          <EntitySet Name="Units" EntityType="DriveSqlCeModel.Unit" />
+          <AssociationSet Name="FK_Spare_Brand" Association="DriveSqlCeModel.FK_Spare_Brand">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Spare" EntitySet="Spares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spare_Group" Association="DriveSqlCeModel.FK_Spare_Group">
+            <End Role="SpareGroup" EntitySet="SpareGroups" />
+            <End Role="Spare" EntitySet="Spares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Spare_Unit" Association="DriveSqlCeModel.FK_Spare_Unit">
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="Spare" EntitySet="Spares" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -509,15 +589,32 @@
           <Property Name="ModifiedOn" Type="DateTime" />
           <Property Name="Description" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Unit">
+        <EntityType Name="SpareGroup">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="ModifiedOn" />
-          <Property Type="String" Name="Description" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedOn" />
+          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ParentGroupID" />
+          <Property Type="String" Name="Code1C" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Children" Relationship="DriveSqlCeModel.FK_ParentSpareGroup" FromRole="SpareGroup" ToRole="SpareGroup1" />
+          <NavigationProperty Name="ParentGroup" Relationship="DriveSqlCeModel.FK_ParentSpareGroup" FromRole="SpareGroup1" ToRole="SpareGroup" />
+          <NavigationProperty Name="Spares" Relationship="DriveSqlCeModel.FK_Spare_Group" FromRole="SpareGroup" ToRole="Spare" />
         </EntityType>
+        <Association Name="FK_ParentSpareGroup">
+          <End Type="DriveSqlCeModel.SpareGroup" Role="SpareGroup" Multiplicity="0..1" />
+          <End Type="DriveSqlCeModel.SpareGroup" Role="SpareGroup1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpareGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SpareGroup1">
+              <PropertyRef Name="ParentGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="ID" />
@@ -527,6 +624,7 @@
           <Property Type="String" Name="Description" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Code1C" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="ID" Nullable="false" />
+          <NavigationProperty Name="Spares" Relationship="DriveSqlCeModel.FK_Spare_Brand" FromRole="Brand" ToRole="Spare" />
         </EntityType>
         <EntityType Name="Spare">
           <Key>
@@ -545,18 +643,56 @@
           <Property Type="String" Name="Code1C" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="QRests" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="ID" Nullable="false" />
+          <NavigationProperty Name="Brand" Relationship="DriveSqlCeModel.FK_Spare_Brand" FromRole="Spare" ToRole="Brand" />
+          <NavigationProperty Name="SpareGroup" Relationship="DriveSqlCeModel.FK_Spare_Group" FromRole="Spare" ToRole="SpareGroup" />
+          <NavigationProperty Name="Unit" Relationship="DriveSqlCeModel.FK_Spare_Unit" FromRole="Spare" ToRole="Unit" />
         </EntityType>
-        <EntityType Name="SpareGroup">
+        <EntityType Name="Unit">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="ModifiedOn" />
-          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="ParentGroupID" />
-          <Property Type="String" Name="Code1C" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <NavigationProperty Name="Spares" Relationship="DriveSqlCeModel.FK_Spare_Unit" FromRole="Unit" ToRole="Spare" />
         </EntityType>
+        <Association Name="FK_Spare_Brand">
+          <End Type="DriveSqlCeModel.Brand" Role="Brand" Multiplicity="0..1" />
+          <End Type="DriveSqlCeModel.Spare" Role="Spare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Spare">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spare_Group">
+          <End Type="DriveSqlCeModel.SpareGroup" Role="SpareGroup" Multiplicity="0..1" />
+          <End Type="DriveSqlCeModel.Spare" Role="Spare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpareGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Spare">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Spare_Unit">
+          <End Type="DriveSqlCeModel.Unit" Role="Unit" Multiplicity="0..1" />
+          <End Type="DriveSqlCeModel.Spare" Role="Spare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Spare">
+              <PropertyRef Name="UnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -783,13 +919,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Units">
-            <EntityTypeMapping TypeName="DriveSqlCeModel.Unit">
-              <MappingFragment StoreEntitySet="Unit">
-                <ScalarProperty Name="ID" ColumnName="ID" />
+          <EntitySetMapping Name="SpareGroups">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.SpareGroup">
+              <MappingFragment StoreEntitySet="SpareGroup">
+                <ScalarProperty Name="Code1C" ColumnName="Code1C" />
+                <ScalarProperty Name="ParentGroupID" ColumnName="ParentGroupID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -823,15 +961,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SpareGroups">
-            <EntityTypeMapping TypeName="DriveSqlCeModel.SpareGroup">
-              <MappingFragment StoreEntitySet="SpareGroup">
-                <ScalarProperty Name="Code1C" ColumnName="Code1C" />
-                <ScalarProperty Name="ParentGroupID" ColumnName="ParentGroupID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="DriveSqlCeModel.Unit">
+              <MappingFragment StoreEntitySet="Unit">
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -855,7 +991,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="SqlCeDataModel" ZoomLevel="60">
+      <Diagram Name="SqlCeDataModel" ZoomLevel="68">
         <EntityTypeShape EntityType="DriveSqlCeModel.Account" Width="1.5" PointX="0.625" PointY="0.75" Height="2.9417936197916665" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Bank" Width="1.5" PointX="2.75" PointY="0.75" Height="2.3648893229166665" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.BankAccount" Width="1.5" PointX="4.75" PointY="0.75" Height="2.3648893229166656" IsExpanded="true" />
@@ -871,10 +1007,30 @@
         <EntityTypeShape EntityType="DriveSqlCeModel.SpareOutgo" Width="1.5" PointX="10.75" PointY="0.75" Height="5.0571093750000031" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.VatRate" Width="1.5" PointX="10.75" PointY="6.75" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="DriveSqlCeModel.Warehouse" Width="1.5" PointX="10.75" PointY="9.75" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="DriveSqlCeModel.Unit" Width="1.5" PointX="5.375" PointY="10.75" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="DriveSqlCeModel.Brand" Width="1.5" PointX="11.375" PointY="12.75" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="DriveSqlCeModel.Spare" Width="1.5" PointX="0.75" PointY="11.75" Height="3.5186979166666674" />
-        <EntityTypeShape EntityType="DriveSqlCeModel.SpareGroup" Width="1.5" PointX="13.375" PointY="0.75" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.SpareGroup" Width="1.5" PointX="13.375" PointY="0.75" Height="2.5571907552083388" />
+        <AssociationConnector Association="DriveSqlCeModel.FK_ParentSpareGroup" >
+          <ConnectorPoint PointX="13.906923076923077" PointY="3.4994921875" />
+          <ConnectorPoint PointX="13.906923076923077" PointY="3.7494921874999996" />
+          <ConnectorPoint PointX="14.353461538461538" PointY="3.7494921874999996" />
+          <ConnectorPoint PointX="14.353461538461538" PointY="3.4994921875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="DriveSqlCeModel.Brand" Width="1.5" PointX="0.75" PointY="13" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.Spare" Width="1.5" PointX="16" PointY="5.875" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="DriveSqlCeModel.Unit" Width="1.5" PointX="13.75" PointY="7" Height="1.9802864583333282" />
+        <AssociationConnector Association="DriveSqlCeModel.FK_Spare_Brand" >
+          <ConnectorPoint PointX="2.25" PointY="14.155742187500003" />
+          <ConnectorPoint PointX="16.75" PointY="14.155742187500003" />
+          <ConnectorPoint PointX="16.75" PointY="9.9706022135416674" />
+        </AssociationConnector>
+        <AssociationConnector Association="DriveSqlCeModel.FK_Spare_Group" >
+          <ConnectorPoint PointX="13.53125" PointY="3.4994921875" />
+          <ConnectorPoint PointX="13.53125" PointY="6.40625" />
+          <ConnectorPoint PointX="16" PointY="6.40625" />
+        </AssociationConnector>
+        <AssociationConnector Association="DriveSqlCeModel.FK_Spare_Unit" >
+          <ConnectorPoint PointX="15.25" PointY="7.9901432291666641" />
+          <ConnectorPoint PointX="16" PointY="7.9901432291666641" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>

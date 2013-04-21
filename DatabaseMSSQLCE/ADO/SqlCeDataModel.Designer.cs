@@ -17,6 +17,15 @@ using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+#region EDM Relationship Metadata
+
+[assembly: EdmRelationshipAttribute("DriveSqlCeModel", "FK_ParentSpareGroup", "SpareGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DatabaseMSSQLCE.ADO.SpareGroup), "SpareGroup1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseMSSQLCE.ADO.SpareGroup), true)]
+[assembly: EdmRelationshipAttribute("DriveSqlCeModel", "FK_Spare_Brand", "Brand", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DatabaseMSSQLCE.ADO.Brand), "Spare", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseMSSQLCE.ADO.Spare), true)]
+[assembly: EdmRelationshipAttribute("DriveSqlCeModel", "FK_Spare_Group", "SpareGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DatabaseMSSQLCE.ADO.SpareGroup), "Spare", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseMSSQLCE.ADO.Spare), true)]
+[assembly: EdmRelationshipAttribute("DriveSqlCeModel", "FK_Spare_Unit", "Unit", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DatabaseMSSQLCE.ADO.Unit), "Spare", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DatabaseMSSQLCE.ADO.Spare), true)]
+
+#endregion
+
 namespace DatabaseMSSQLCE.ADO
 {
     #region Contexts
@@ -308,18 +317,18 @@ namespace DatabaseMSSQLCE.ADO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Unit> Units
+        public ObjectSet<SpareGroup> SpareGroups
         {
             get
             {
-                if ((_Units == null))
+                if ((_SpareGroups == null))
                 {
-                    _Units = base.CreateObjectSet<Unit>("Units");
+                    _SpareGroups = base.CreateObjectSet<SpareGroup>("SpareGroups");
                 }
-                return _Units;
+                return _SpareGroups;
             }
         }
-        private ObjectSet<Unit> _Units;
+        private ObjectSet<SpareGroup> _SpareGroups;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -356,18 +365,18 @@ namespace DatabaseMSSQLCE.ADO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<SpareGroup> SpareGroups
+        public ObjectSet<Unit> Units
         {
             get
             {
-                if ((_SpareGroups == null))
+                if ((_Units == null))
                 {
-                    _SpareGroups = base.CreateObjectSet<SpareGroup>("SpareGroups");
+                    _Units = base.CreateObjectSet<Unit>("Units");
                 }
-                return _SpareGroups;
+                return _Units;
             }
         }
-        private ObjectSet<SpareGroup> _SpareGroups;
+        private ObjectSet<Unit> _Units;
 
         #endregion
 
@@ -494,11 +503,11 @@ namespace DatabaseMSSQLCE.ADO
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Units EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the SpareGroups EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToUnits(Unit unit)
+        public void AddToSpareGroups(SpareGroup spareGroup)
         {
-            base.AddObject("Units", unit);
+            base.AddObject("SpareGroups", spareGroup);
         }
     
         /// <summary>
@@ -518,11 +527,11 @@ namespace DatabaseMSSQLCE.ADO
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the SpareGroups EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Units EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToSpareGroups(SpareGroup spareGroup)
+        public void AddToUnits(Unit unit)
         {
-            base.AddObject("SpareGroups", spareGroup);
+            base.AddObject("Units", unit);
         }
 
         #endregion
@@ -1359,6 +1368,32 @@ namespace DatabaseMSSQLCE.ADO
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DriveSqlCeModel", "FK_Spare_Brand", "Spare")]
+        public EntityCollection<Spare> Spares
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Spare>("DriveSqlCeModel.FK_Spare_Brand", "Spare");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Spare>("DriveSqlCeModel.FK_Spare_Brand", "Spare", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -3375,6 +3410,124 @@ namespace DatabaseMSSQLCE.ADO
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DriveSqlCeModel", "FK_Spare_Brand", "Brand")]
+        public Brand Brand
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Brand>("DriveSqlCeModel.FK_Spare_Brand", "Brand").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Brand>("DriveSqlCeModel.FK_Spare_Brand", "Brand").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Brand> BrandReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Brand>("DriveSqlCeModel.FK_Spare_Brand", "Brand");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Brand>("DriveSqlCeModel.FK_Spare_Brand", "Brand", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DriveSqlCeModel", "FK_Spare_Group", "SpareGroup")]
+        public SpareGroup SpareGroup
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SpareGroup>("DriveSqlCeModel.FK_Spare_Group", "SpareGroup").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SpareGroup>("DriveSqlCeModel.FK_Spare_Group", "SpareGroup").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SpareGroup> SpareGroupReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SpareGroup>("DriveSqlCeModel.FK_Spare_Group", "SpareGroup");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SpareGroup>("DriveSqlCeModel.FK_Spare_Group", "SpareGroup", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DriveSqlCeModel", "FK_Spare_Unit", "Unit")]
+        public Unit Unit
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Unit>("DriveSqlCeModel.FK_Spare_Unit", "Unit").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Unit>("DriveSqlCeModel.FK_Spare_Unit", "Unit").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Unit> UnitReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Unit>("DriveSqlCeModel.FK_Spare_Unit", "Unit");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Unit>("DriveSqlCeModel.FK_Spare_Unit", "Unit", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -3705,6 +3858,92 @@ namespace DatabaseMSSQLCE.ADO
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DriveSqlCeModel", "FK_ParentSpareGroup", "SpareGroup1")]
+        public EntityCollection<SpareGroup> Children
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SpareGroup>("DriveSqlCeModel.FK_ParentSpareGroup", "SpareGroup1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SpareGroup>("DriveSqlCeModel.FK_ParentSpareGroup", "SpareGroup1", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DriveSqlCeModel", "FK_ParentSpareGroup", "SpareGroup")]
+        public SpareGroup ParentGroup
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SpareGroup>("DriveSqlCeModel.FK_ParentSpareGroup", "SpareGroup").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SpareGroup>("DriveSqlCeModel.FK_ParentSpareGroup", "SpareGroup").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SpareGroup> ParentGroupReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SpareGroup>("DriveSqlCeModel.FK_ParentSpareGroup", "SpareGroup");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SpareGroup>("DriveSqlCeModel.FK_ParentSpareGroup", "SpareGroup", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DriveSqlCeModel", "FK_Spare_Group", "Spare")]
+        public EntityCollection<Spare> Spares
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Spare>("DriveSqlCeModel.FK_Spare_Group", "Spare");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Spare>("DriveSqlCeModel.FK_Spare_Group", "Spare", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -4692,6 +4931,32 @@ namespace DatabaseMSSQLCE.ADO
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DriveSqlCeModel", "FK_Spare_Unit", "Spare")]
+        public EntityCollection<Spare> Spares
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Spare>("DriveSqlCeModel.FK_Spare_Unit", "Spare");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Spare>("DriveSqlCeModel.FK_Spare_Unit", "Spare", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>

@@ -1,5 +1,4 @@
-﻿Реализовано: Запчасти
-спрашивать про удаление в гриде
+﻿спрашивать про удаление в гриде
 красиво сделать кнопки в гриде
 нарисовать окно редактирования Unit
 исправить глюк с двойным отображением колонок
@@ -12,3 +11,6 @@
 3. DataController
 4. Окно грида
 5. Окно редактирования
+
+ALTER TABLE SpareGroup
+ADD CONSTRAINT FK_ParentSpareGroup FOREIGN KEY (ParentGroupID) REFERENCES SpareGroup (ID);

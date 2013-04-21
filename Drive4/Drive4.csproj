@@ -94,6 +94,9 @@
     <Compile Include="WpfPresenter\Components\Spare\SpareGridWindow.xaml.cs">
       <DependentUpon>SpareGridWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WpfPresenter\Components\Spare\SpareWorkspaceWindow.xaml.cs">
+      <DependentUpon>SpareWorkspaceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WpfPresenter\Components\Unit\UnitEditWindow.xaml.cs">
       <DependentUpon>UnitEditWindow.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WpfPresenter\Components\Spare\SpareGridWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WpfPresenter\Components\Spare\SpareWorkspaceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

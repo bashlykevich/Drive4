@@ -75,13 +75,17 @@ namespace Drive4.MsSqlCe.Components
             get
             {
                 List<DataGridColumn> columns = new List<DataGridColumn>();
-                columns.Add(Helper.GetDataGridTextColumn("ID", "ID", 0.1));
-                columns.Add(Helper.GetDataGridTextColumn("Название", "Name", 0.20));
-                columns.Add(Helper.GetDataGridTextColumn("Описание", "Description", 0.20));
-                columns.Add(Helper.GetDataGridTextColumn("Дата изменения", "ModifiedOn", 0.20));
-                columns.Add(Helper.GetDataGridTextColumn("UnitID", "UnitID", 0.10));
-                columns.Add(Helper.GetDataGridTextColumn("BrandID", "BrandID", 0.10));
-                columns.Add(Helper.GetDataGridTextColumn("GroupID", "GroupID", 0.10));
+                //columns.Add(Helper.GetDataGridTextColumn("ID", "ID", 0.1));
+                columns.Add(Helper.GetDataGridTextColumn("Код магазина", "CodeI", 0.2));
+                columns.Add(Helper.GetDataGridTextColumn("Код ШАТЕ-М", "CodeS", 0.2));
+                columns.Add(Helper.GetDataGridTextColumn("Название", "Name", 0.4));                
+                columns.Add(Helper.GetDataGridTextColumn("Потребность", "QDemand", 0.1));
+                columns.Add(Helper.GetDataGridTextColumn("Остаток", "QRest", 0.1));
+                //columns.Add(Helper.GetDataGridTextColumn("Описание", "Description", 0.20));
+                //columns.Add(Helper.GetDataGridTextColumn("Дата изменения", "ModifiedOn", 0.20));
+                //columns.Add(Helper.GetDataGridTextColumn("UnitID", "UnitID", 0.10));
+                //columns.Add(Helper.GetDataGridTextColumn("BrandID", "BrandID", 0.10));
+                //columns.Add(Helper.GetDataGridTextColumn("GroupID", "GroupID", 0.10));
                 return columns;
             }
         }

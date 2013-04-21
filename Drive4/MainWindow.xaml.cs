@@ -57,8 +57,7 @@ namespace Drive4
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            GoToDictionarySpare();
+        {            
         }
     }
 }
